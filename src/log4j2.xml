@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<!-- 标准输出 -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] %l [%t] [%-4r] [%p] \: %m%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<!-- 配置记录器级别 -->
+		<Logger name="com.alipay" level="DEBUG"></Logger>
+		<Logger name="com.bocpay" level="DEBUG"></Logger>
+		<Logger name="com.sxypay" level="DEBUG"></Logger>
+		<Logger name="com.tencent" level="DEBUG"></Logger>
+		<Logger name="com.unipay" level="DEBUG"></Logger>
+		<Logger name="cn.tsinghua.sftp" level="DEBUG"></Logger>
+		<Logger name="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean" level="WARN"></Logger>
+		<Root level="WARN">
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+</Configuration>

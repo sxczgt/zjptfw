@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="AlipayTradeService" provider="java:RPC">
+		<parameter name="className" value="com.alipay.trade.AlipayTrade" />
+		<!-- <parameter name="allowedMethods" value="*" /> -->
+		<parameter name="allowedMethods" value="AlipayTradeCancel AlipayTradePay AlipayTradePrecreate AlipayTradeQuery AlipayTradeRefund" />
+		<parameter name="wsdlTargetNamespace" value="http://webservice.thcic.pub"/>
+	</service>
+	<service name="WxpayTradeService" provider="java:RPC">
+		<parameter name="className" value="com.tencent.trade.WxpayTrade" />
+		<!-- <parameter name="allowedMethods" value="*" /> -->
+		<!-- <parameter name="allowedMethods" value="WxpayCloseOrder WxpayMicroPay WxpayQueryOrder WxpayRefund WxpayReverse WxpayUnifiedOrder" /> -->
+		<parameter name="allowedMethods" value="WxpayCancel WxpayUnifiedOrder WxpayMicroPay WxpayQueryOrder WxpayRefund" />
+		<parameter name="wsdlTargetNamespace" value="http://webservice.thcic.pub"/>
+	</service>
+	<service name="SfptService" provider="java:RPC">
+		<parameter name="className" value="cn.tsinghua.sftp.webservice.SfptService" />
+		<!-- <parameter name="allowedMethods" value="*" /> -->
+		<parameter name="allowedMethods" value="TradeCancel TradePrecreate TradePay TradeQuery TradeRefund" />
+		<parameter name="wsdlTargetNamespace" value="http://webservice.thcic.pub"/>
+	</service>
+	<handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper" />
+	<transport name="http">
+		<requestFlow>
+			<handler type="URLMapper" />
+			<handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler" />
+		</requestFlow>
+	</transport>
+</deployment>

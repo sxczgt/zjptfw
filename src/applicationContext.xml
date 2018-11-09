@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- 基于注解的，导入标识的包,可以识别本包，或其自包,其只对带有指定注解的类，方法有效，不是对这个包中的所有类和方法有效 -->
+	<context:component-scan base-package="cn.tsinghua" />
+
+	<!-- 配置数据源 -->
+	<!--<bean id="DataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>java:comp/env/jdbc/sfpt</value>
+		</property>
+	</bean>-->
+	<!-- 配置数据源 dev-->
+
+	<bean id="DataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>oracle.jdbc.driver.OracleDriver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:oracle:thin:@166.111.5.121:1521/devdb</value>
+		</property>
+		<property name="username">
+			<value>cwgl</value>
+		</property>
+		<property name="password">
+			<value>info_cwgl</value>
+		</property>
+	</bean>
+
+	<!-- 配置spring的JdbcTemplate -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" abstract="false" lazy-init="false" autowire="default">
+		<property name="dataSource" ref="DataSource" />
+	</bean>
+	<!-- 配置spring的JdbcTemplate dev-->
+	<bean id="jdbcTemplate_dev" class="org.springframework.jdbc.core.JdbcTemplate" abstract="false" lazy-init="false" autowire="byName">
+		<property name="dataSource" ref="DataSource" />
+	</bean>
+
+	<!-- Transaction manager ： 非JTA(分布式）事务，配置时需要指定dataSource属性（非分布式事务，事务是在数据库创建的链接上开启）。JTA(分布式）事务， 配置时不能指定dataSource属性（分布式事务，是有全局事务来管理数据库链接的） -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="DataSource" />
+	</bean>
+
+	<!-- 使用注解annotation定义事务： 如果 "proxy-target-class"="true"，基于类的代理将起作用（需要CGLIB库cglib.jar在CLASSPATH中）。 如果 "proxy-target-class"="false" 或者省略，标准的JDK基于接口的代理将起作用。 -->
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="false" />
+
+	<!-- 配置namedParameterJdbcTemplate,该对象可以使用具名参数, 其没有无参数的构造器, 所以必须为其构造器指定参数 -->
+	<bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg ref="DataSource" />
+	</bean>
+
+	<bean id="requestPayAction" class="cn.tsinghua.sftp.action.RequestPayAction" scope="prototype">
+		<property name="service">
+			<ref bean="paymentService" />
+		</property>
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+	<bean id="sendToAlipayAction" class="cn.tsinghua.sftp.action.SendToAlipayAction" scope="prototype">
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+	<bean id="sendToAlipayPhoneAction" class="cn.tsinghua.sftp.action.SendToAlipayPhoneAction" scope="prototype">
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+
+	<!-- 测试类 -->
+	<bean id="payDemoAction" class="cn.tsinghua.sftp.demo.PayDemoAction" scope="prototype">
+		<property name="service">
+			<ref bean="paymentService" />
+		</property>
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+	<bean id="apiTestAction" class="cn.tsinghua.sftp.action.ApiTestAction" scope="prototype">
+	</bean>
+	<bean id="sqlAction" class="cn.tsinghua.sftp.action.SqlAction" scope="prototype">
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+	<bean id="requestBillAction" class="cn.tsinghua.sftp.action.RequestBillAction" scope="prototype">
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+		<property name="service">
+			<ref bean="paymentService" />
+		</property>
+	</bean>
+
+	<bean id="modifyOrderAction" class="cn.tsinghua.sftp.action.ModifyOrderAction" scope="prototype">
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+
+	<bean id="ackOrderAction" class="cn.tsinghua.sftp.action.AckOrderAction" scope="prototype">
+		<property name="service">
+			<ref bean="paymentService" />
+		</property>
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+
+	<bean id="ackOrderBatchAction" class="cn.tsinghua.sftp.action.AckOrderBatchAction" scope="prototype">
+		<property name="service">
+			<ref bean="paymentService" />
+		</property>
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+
+	<bean id="updateRMBAction" class="cn.tsinghua.sftp.action.UpdateRMBAction" scope="prototype">
+		<property name="service">
+			<ref bean="paymentService" />
+		</property>
+	</bean>
+
+	<bean id="sxyzfSearchAction" class="cn.tsinghua.sftp.action.SxyzfSearchAction" scope="prototype">
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+	<bean id="sxyzfReceivedAction" class="cn.tsinghua.sftp.action.SxyzfReceivedAction" scope="prototype">
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+	<bean id="sxyzfReceivedWkAction" class="cn.tsinghua.sftp.action.SxyzfReceivedWkAction" scope="prototype">
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+	<bean id="sxyzfAsynReceivedAction" class="cn.tsinghua.sftp.action.SxyzfAsynReceivedAction" scope="prototype">
+		<property name="service">
+			<ref bean="paymentService" />
+		</property>
+	</bean>
+	<bean id="sxyzfAsynReceivedWkAction" class="cn.tsinghua.sftp.action.SxyzfAsynReceivedWkAction" scope="prototype">
+		<property name="service">
+			<ref bean="paymentService" />
+		</property>
+	</bean>
+	<bean id="sendToBocpayAction" class="cn.tsinghua.sftp.action.SendToBocpayAction" scope="prototype">
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+	<bean id="bocpayReceivedAction" class="cn.tsinghua.sftp.action.BocpayReceivedAction" scope="prototype">
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+		<property name="service">
+			<ref bean="paymentService" />
+		</property>
+	</bean>
+	<bean id="sendToWxpayAction" class="cn.tsinghua.sftp.action.SendToWxpayAction" scope="prototype">
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+	<bean id="sendToWxpayPhoneAction" class="cn.tsinghua.sftp.action.SendToWxpayPhoneAction" scope="prototype">
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+	<bean id="wxpayAsynReceivedAction" class="cn.tsinghua.sftp.action.WxpayAsynReceivedAction" scope="prototype">
+		<property name="service">
+			<ref bean="paymentService" />
+		</property>
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+
+	<bean id="sendToUnipayAction" class="cn.tsinghua.sftp.action.SendToUnipayAction" scope="prototype">
+		<property name="service">
+			<ref bean="paymentService" />
+		</property>
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+
+	<bean id="alipayReceivedAction" class="cn.tsinghua.sftp.action.AlipayReceivedAction" scope="prototype">
+		<property name="service">
+			<ref bean="paymentService" />
+		</property>
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+
+	<bean id="alipayAsynReceivedAction" class="cn.tsinghua.sftp.action.AlipayAsynReceivedAction" scope="prototype">
+		<property name="service">
+			<ref bean="paymentService" />
+		</property>
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+
+	<bean id="unipayReceivedAction" class="cn.tsinghua.sftp.action.UnipayReceivedAction" scope="prototype">
+		<property name="service">
+			<ref bean="paymentService" />
+		</property>
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+
+
+	<bean id="unipayAsynReceivedAction" class="cn.tsinghua.sftp.action.UnipayAsynReceivedAction" scope="prototype">
+		<property name="service">
+			<ref bean="paymentService" />
+		</property>
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+
+	<bean id="searchAction" class="cn.tsinghua.sftp.action.SearchAction" scope="prototype">
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+
+	<bean id="runTaskAction" class="cn.tsinghua.sftp.action.RunTaskAction" scope="prototype">
+		<property name="service">
+			<ref bean="paymentService" />
+		</property>
+	</bean>
+
+	<bean id="paymentService" class="cn.tsinghua.sftp.service.impl.PaymentServiceImpl" scope="prototype">
+		<property name="paymentDao">
+			<ref bean="paymentDao" />
+		</property>
+		<property name="taskExecutor">
+			<ref bean="taskExecutor" />
+		</property>
+		<property name="queryExecutor">
+			<ref bean="taskExecutor" />
+		</property>
+	</bean>
+
+	<bean id="paymentDao" class="cn.tsinghua.sftp.dao.jdbc.PaymentDaoJdbc" scope="prototype">
+		<property name="jdbcTemplate">
+			<ref bean="jdbcTemplate" />
+		</property>
+	</bean>
+
+	<!-- 配置线程池 -->
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<!-- 线程池维护线程的最少数量5 -->
+		<property name="corePoolSize" value="5" />
+		<!-- 线程池所使用的缓冲队列200 -->
+		<property name="queueCapacity" value="200" />
+		<!-- 线程池维护线程的最大数量1000 -->
+		<property name="maxPoolSize" value="10" />
+		<!-- 线程池维护线程所允许的空闲时间30000 -->
+		<property name="keepAliveSeconds" value="30000" />
+		<property name="rejectedExecutionHandler">
+			<bean class="java.util.concurrent.ThreadPoolExecutor.DiscardPolicy" />
+		</property>
+	</bean>
+</beans>

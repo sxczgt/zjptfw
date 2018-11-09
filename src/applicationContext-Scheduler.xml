@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-lazy-init="false" default-autowire="no" default-dependency-check="none">
+	
+<!-- 异步通知（半分钟一次） -->
+<!-- 
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="notifyTaskJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>30 * * * * ?</value>
+		</property>
+	</bean>
+	<bean id="notifyTaskJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="notifyTask" />
+		</property>
+		<property name="targetMethod">
+			<value>execute</value>
+		</property>
+	</bean>
+ -->
+ 
+<!-- 查询订单（每隔10分钟调用） -->
+	<bean id="queryOrderCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="queryOrderJobDetail" />
+		<property name="cronExpression">
+			<value>30 3/10 * * * ?</value>
+		</property>
+	</bean>
+	<bean id="queryOrderJobDetail" class="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="queryOrderTask" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<bean id="queryOrderTask" class="cn.tsinghua.sftp.task.QueryOrderTask"/>
+
+<!-- 异步通知（每隔2分钟调用） -->
+	<bean id="notifyCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="notifyJobDetail" />
+		<property name="cronExpression">
+			<value>30 */2 * * * ?</value>
+		</property>
+	</bean>
+	<bean id="notifyJobDetail" class="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="notifyTask" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<bean id="notifyTask" class="cn.tsinghua.sftp.task.NotifyTask"/>
+
+<!-- 首信易更新人民币金额任务 -->	
+	<bean id="updateRMBCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="updateRMBJobDetail" />
+		<property name="cronExpression">
+			<value>0 0 5 * * ?</value>
+		</property>
+	</bean>
+	<bean id="updateRMBJobDetail" class="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="updateRMBTask" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<bean id="updateRMBTask" class="cn.tsinghua.sftp.task.UpdateRMBTask"/>
+
+<!-- 首信易对账任务  -->
+	<bean id="task1CronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="task1JobDetail" />
+		<property name="cronExpression">
+			<value>0 30 5 * * ?</value>
+		</property>
+	</bean>
+	<bean id="task1JobDetail" class="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="dzSxyzfTask" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<bean id="dzSxyzfTask" class="cn.tsinghua.sftp.task.DzSxyzfTask"/>
+
+<!-- 首信易到账检查任务 -->
+	<bean id="task3CronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="task3JobDetail" />
+		<property name="cronExpression">
+			<value>0 0 6 * * ?</value>
+		</property>
+	</bean>
+	<bean id="task3JobDetail" class="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="dzCheckTask" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<bean id="dzCheckTask" class="cn.tsinghua.sftp.task.DzCheckTask"/>
+
+<!-- 支付宝对账和批量付款任务  -->
+	<bean id="task2CronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="task2JobDetail" />
+		<property name="cronExpression">
+			<value>0 25 9 * * ?</value>
+		</property>
+	</bean>
+	<bean id="task2JobDetail" class="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="dzAlipayTask" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<bean id="dzAlipayTask" class="cn.tsinghua.sftp.task.DzAlipayTask"/>
+
+<!-- 中行对账  -->
+	<bean id="dzzhtaskCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="dzzhJobDetail" />
+		<property name="cronExpression">
+			<value>0 15 10 * * ?</value>
+		</property>
+	</bean>
+	<bean id="dzzhJobDetail" class="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="dzZhpayTask" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<bean id="dzZhpayTask" class="cn.tsinghua.sftp.task.DzZhpayTask"/>	
+
+<!-- 微信对账和批量付款任务  -->
+	<bean id="task5CronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="task5JobDetail" />
+		<property name="cronExpression">
+			<value>0 25 10 * * ?</value>
+		</property>
+	</bean>
+	<bean id="task5JobDetail" class="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="dzWxpayTask" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<bean id="dzWxpayTask" class="cn.tsinghua.sftp.task.DzWxpayTask"/>
+	
+<!-- 建行对账  -->
+	<bean id="dzjhtaskCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="dzjhJobDetail" />
+		<property name="cronExpression">
+			<value>0 35 10 * * ?</value>
+		</property>
+	</bean>
+	<bean id="dzjhJobDetail" class="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="dzJhpayTask" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<bean id="dzJhpayTask" class="cn.tsinghua.sftp.task.DzJhpayTask"/>
+	
+<!-- 银联对账  -->
+	<bean id="dzyltaskCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="dzylJobDetail" />
+		<property name="cronExpression">
+			<value>0 45 10 * * ?</value>
+		</property>
+	</bean>
+	<bean id="dzylJobDetail" class="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="dzYlpayTask" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<bean id="dzYlpayTask" class="cn.tsinghua.sftp.task.DzYlpayTask"/>
+
+
+<!-- 支付宝批量付款查询任务（每小时一次） -->
+	<bean id="task4CronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="task4JobDetail" />
+		<property name="cronExpression">
+			<value>0 5 * * * ?</value>
+		</property>
+	</bean>
+	<bean id="task4JobDetail" class="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="alipayQueryBptbPayTask" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<bean id="alipayQueryBptbPayTask" class="cn.tsinghua.sftp.task.AlipayQueryBptbPayTask"/>
+	
+<!-- 每日11点（最后一个对账任务） 交易提醒  -->
+	<bean id="dzNotifyTaskCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="dzNotifyTaskJobDetail" />
+		<property name="cronExpression">
+			<value>0 0 11 * * ?</value>
+		</property>
+	</bean>
+	<bean id="dzNotifyTaskJobDetail" class="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="dzNotifyTask" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<bean id="dzNotifyTask" class="cn.tsinghua.sftp.task.DzNotifyTask"/>
+	
+<!-- 每日11点30   提款提醒  -->
+	<bean id="tkNotifyTaskCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="tkNotifyTaskJobDetail" />
+		<property name="cronExpression">
+			<value>0 30 11 * * ?</value>
+		</property>
+	</bean>
+	<bean id="tkNotifyTaskJobDetail" class="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="tkNotifyTask" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<bean id="tkNotifyTask" class="cn.tsinghua.sftp.task.TkNotifyTask"/>
+	
+<!-- 每日早8点到晚20点，每小时一次 交易检查  -->
+	<bean id="jyjcTaskCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="jyjcJobDetail" />
+		<property name="cronExpression">
+			<value>0 5 8-20/1 * * ?</value>
+		</property>
+	</bean>
+	<bean id="jyjcJobDetail" class="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="jyjcTask" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<bean id="jyjcTask" class="cn.tsinghua.sftp.task.JyjcTask"/>
+	
+<!-- 每日早8点到晚20点，每小时一次 异步通知检查 -->
+	<bean id="ybtzTaskCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="ybtzJobDetail" />
+		<property name="cronExpression">
+			<value>0 10 8-20/1 * * ?</value>
+		</property>
+	</bean>
+	<bean id="ybtzJobDetail" class="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="ybtzTask" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<bean id="ybtzTask" class="cn.tsinghua.sftp.task.YbtzTask"/>
+	
+<!-- 每日早8点到晚20点，每小时一次 异步通知检查失败率 -->
+	<bean id="ybtzsblTaskCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="ybtzsblJobDetail" />
+		<property name="cronExpression">
+			<value>0 15 8-20/1 * * ?</value>
+		</property>
+	</bean>
+	<bean id="ybtzsblJobDetail" class="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="ybtzsblTask" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<bean id="ybtzsblTask" class="cn.tsinghua.sftp.task.YbtzsblTask"/>
+	
+<!-- 中行主动查询（每隔1分钟调用） -->
+<!--   	
+	<bean id="queryBocOrderCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="queryBocOrderJobDetail" />
+		<property name="cronExpression">
+			<value>45 */1 * * * ?</value>
+		</property>
+	</bean>
+	<bean id="queryBocOrderJobDetail" class="cn.tsinghua.sftp.task.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="shouldRecover" value="true" />
+		<property name="targetObject" ref="queryBocOrderTask" />
+		<property name="targetMethod" value="execute" />
+	</bean>
+	<bean id="queryBocOrderTask" class="cn.tsinghua.sftp.task.QueryBocOrderTask"/>
+-->
+
+<!-- SchedulerFactoryBean -->
+	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false">
+		<property name="overwriteExistingJobs" value="true"/> 
+		<property name="dataSource" ref="DataSource" />
+		<property name="configLocation" value="classpath:quartz.properties" />
+		<property name="triggers">
+			<list>
+				<ref local="task1CronTriggerBean" />
+				<ref local="task2CronTriggerBean" />
+				<ref local="task3CronTriggerBean" />
+				<ref local="task4CronTriggerBean" />
+				<ref local="task5CronTriggerBean" />
+				<ref local="notifyCronTriggerBean" />
+				<ref local="queryOrderCronTriggerBean" />
+				<ref local="updateRMBCronTriggerBean" />
+				<ref local="dzNotifyTaskCronTriggerBean" />
+				<ref local="tkNotifyTaskCronTriggerBean" />
+				<ref local="jyjcTaskCronTriggerBean" />
+				<ref local="ybtzTaskCronTriggerBean" />
+				<ref local="ybtzsblTaskCronTriggerBean" />
+				<ref local="dzjhtaskCronTriggerBean" />
+				<ref local="dzyltaskCronTriggerBean" />
+				<ref local="dzzhtaskCronTriggerBean" />
+<!--
+				<ref local="queryBocOrderCronTriggerBean" />
+-->
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean"> 
+		<property name="triggers"> 
+			<list> 
+				<ref local="cronTrigger"/>
+				<ref local="dzCronTrigger"/> 
+			</list>
+		</property>
+		<property name="startupDelay">
+			<value>50</value>
+		</property> 
+	</bean> 
+	-->
+</beans>

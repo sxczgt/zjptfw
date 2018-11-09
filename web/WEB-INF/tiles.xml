@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="cn.edu.tsinghua.mainlayout" template="/layout/mainLayout.jsp">
+		<put-attribute name="title" value="张国宇的模板" />
+		<put-attribute name="header"
+			value="/common/header.jsp" />
+		<put-attribute name="left" value="/common/menu.jsp" />
+		<put-attribute name="right" value="right" />
+		<put-attribute name="footer"
+			value="/common/footer.jsp" />
+	</definition>
+	<definition name="cn.edu.tsinghua.error" extends="cn.edu.tsinghua.mainlayout">
+		<put-attribute name="title" value="张国宇的测试" />
+		<put-attribute name="right" value="/error.jsp" />
+	</definition>
+	<definition name="cn.edu.tsinghua.index.success" extends="cn.edu.tsinghua.mainlayout">
+		<put-attribute name="title" value="张国宇的测试" />
+		<put-attribute name="right" value="/login_success.jsp" />
+	</definition>
+</tiles-definitions>

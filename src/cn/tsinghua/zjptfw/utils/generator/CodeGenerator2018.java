@@ -122,6 +122,12 @@ public class CodeGenerator2018 {
                         "/" + StringUtils.firstCharToLower(tableInfo.getEntityName()) + "Edit.jsp";
             }
         });
+        focList.add(new FileOutConfig("/templates/sqlSupport.java.ftl") {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return outputDir + "/DynamicSqlSupport/" + toUpperCaseFirstOne(tableInfo.getEntityName())+ "DynamicSqlSupport.java";
+            }
+        });
         cfg.setFileOutConfigList(focList);
 
             new AutoGenerator().setGlobalConfig(config)
@@ -137,7 +143,12 @@ public class CodeGenerator2018 {
                 .execute();
     }
 
-
+    public static String toUpperCaseFirstOne(String s){
+        if(Character.isUpperCase(s.charAt(0)))
+            return s;
+        else
+            return (new StringBuilder()).append(Character.toUpperCase(s.charAt(0))).append(s.substring(1)).toString();
+    }
     /**
      * 是否强制带上注解
      */

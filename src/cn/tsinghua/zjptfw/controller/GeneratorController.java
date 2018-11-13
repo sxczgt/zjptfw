@@ -14,21 +14,22 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Controller
-@RequestMapping("/generator/")
+@RequestMapping("/generator")
 public class GeneratorController {
 
     @Resource
     JdbcTemplate jdbcTemplate;
 
     @RequestMapping("doGenerator")
-    public void doGenerator() throws ServletException {
+    public String doGenerator() throws ServletException {
         System.out.println("1111");
         List<TableCommentRowMapper.TableComment> list = jdbcTemplate.query("select * from user_tab_comments where table_name like 'ZJJS_%'", new TableCommentRowMapper());
-        jdbcTemplate.queryForRowSet("select * from user_tab_comments where table_name like 'ZJJS_%'",false);
+
         ExecutorService executorService = Executors.newFixedThreadPool(5);
         for (int i = 0; i < list.size(); i++) {
             TableCommentRowMapper.TableComment tableComment = list.get(i);
             executorService.execute(() -> CodeGenerator2018.generateByTables(CodeGenerator2018.packageName, tableComment.toString()));
         }
+        return "index";
     }
 }

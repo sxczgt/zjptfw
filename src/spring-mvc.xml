@@ -18,7 +18,7 @@
    
     
     <!-- 加载包中的controller  注解扫描包 -->
-   <context:component-scan base-package="cn.tsinghua.sftp.*"/>
+   <context:component-scan base-package="cn.tsinghua.*"/>
    <!-- 开启注解 -->
  	<mvc:annotation-driven />
 	<!-- 视图分解器 -->

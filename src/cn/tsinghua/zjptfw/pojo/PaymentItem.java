@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -17,13 +17,12 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author guotao
- * @since 2018-11-09
+ * @since 2018-11-15
  */
 
 @Table(name="ZJJS_PAYMENT_ITEM")
 public class PaymentItem extends Model<PaymentItem> {
 
-    private static final long serialVersionUID = 1L;
 
     /**
      * 项目ID
@@ -65,19 +64,19 @@ public class PaymentItem extends Model<PaymentItem> {
      * 支付开始日期
      */
     @TableField("PAY_BEGIN")
-    private LocalDateTime payBegin;
+    private Date payBegin;
 
     /**
      * 支付结束日期
      */
     @TableField("PAY_END")
-    private LocalDateTime payEnd;
+    private Date payEnd;
 
     /**
      * 在用设备个数(设备申请数保存在设备申请表中)
      */
     @TableField("DEVICE_COUNT")
-    private Double deviceCount;
+    private Integer deviceCount;
 
     /**
      * 财务部门编码
@@ -251,7 +250,7 @@ public class PaymentItem extends Model<PaymentItem> {
      * 创建时间
      */
     @TableField("CREATE_DATE")
-    private LocalDateTime createDate;
+    private Date createDate;
 
     /**
      * 财务审核人
@@ -263,7 +262,7 @@ public class PaymentItem extends Model<PaymentItem> {
      * 审核时间
      */
     @TableField("AUDIT_TIME")
-    private LocalDateTime auditTime;
+    private Date auditTime;
 
     public String getPaymentItemId() {
         return paymentItemId;
@@ -307,25 +306,25 @@ public class PaymentItem extends Model<PaymentItem> {
     public void setChargeContent(String chargeContent) {
         this.chargeContent = chargeContent;
     }
-    public LocalDateTime getPayBegin() {
+    public Date getPayBegin() {
         return payBegin;
     }
 
-    public void setPayBegin(LocalDateTime payBegin) {
+    public void setPayBegin(Date payBegin) {
         this.payBegin = payBegin;
     }
-    public LocalDateTime getPayEnd() {
+    public Date getPayEnd() {
         return payEnd;
     }
 
-    public void setPayEnd(LocalDateTime payEnd) {
+    public void setPayEnd(Date payEnd) {
         this.payEnd = payEnd;
     }
-    public Double getDeviceCount() {
+    public Integer getDeviceCount() {
         return deviceCount;
     }
 
-    public void setDeviceCount(Double deviceCount) {
+    public void setDeviceCount(Integer deviceCount) {
         this.deviceCount = deviceCount;
     }
     public String getFinancialDeptCode() {
@@ -524,11 +523,11 @@ public class PaymentItem extends Model<PaymentItem> {
     public void setCreater(String creater) {
         this.creater = creater;
     }
-    public LocalDateTime getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
     public String getAuditor() {
@@ -538,93 +537,13 @@ public class PaymentItem extends Model<PaymentItem> {
     public void setAuditor(String auditor) {
         this.auditor = auditor;
     }
-    public LocalDateTime getAuditTime() {
+    public Date getAuditTime() {
         return auditTime;
     }
 
-    public void setAuditTime(LocalDateTime auditTime) {
+    public void setAuditTime(Date auditTime) {
         this.auditTime = auditTime;
     }
-
-    public static final String PAYMENT_ITEM_ID = "PAYMENT_ITEM_ID";
-
-    public static final String PARTNER_ID = "PARTNER_ID";
-
-    public static final String PAYMENT_ITEM_NAME = "PAYMENT_ITEM_NAME";
-
-    public static final String PAYMENT_ITEM_SNAME = "PAYMENT_ITEM_SNAME";
-
-    public static final String PAYMENT_ITEM_ENAME = "PAYMENT_ITEM_ENAME";
-
-    public static final String CHARGE_CONTENT = "CHARGE_CONTENT";
-
-    public static final String PAY_BEGIN = "PAY_BEGIN";
-
-    public static final String PAY_END = "PAY_END";
-
-    public static final String DEVICE_COUNT = "DEVICE_COUNT";
-
-    public static final String FINANCIAL_DEPT_CODE = "FINANCIAL_DEPT_CODE";
-
-    public static final String FINANCIAL_DEPT_NAME = "FINANCIAL_DEPT_NAME";
-
-    public static final String FINANCIAL_ITEM_CODE = "FINANCIAL_ITEM_CODE";
-
-    public static final String FINANCIAL_ITEM_NAME = "FINANCIAL_ITEM_NAME";
-
-    public static final String PROJECT_MANAGER_CODE = "PROJECT_MANAGER_CODE";
-
-    public static final String PROJECT_MANAGER_NAME = "PROJECT_MANAGER_NAME";
-
-    public static final String OPERATOR_CODE = "OPERATOR_CODE";
-
-    public static final String OPERATOR_NAME = "OPERATOR_NAME";
-
-    public static final String OPERATOR_PHONE = "OPERATOR_PHONE";
-
-    public static final String OPERATOR_EMAIL = "OPERATOR_EMAIL";
-
-    public static final String OPERATOR_PM_POWER = "OPERATOR_PM_POWER";
-
-    public static final String PAYMENT_WEB_URL = "PAYMENT_WEB_URL";
-
-    public static final String RMB_VALUATION = "RMB_VALUATION";
-
-    public static final String MONEY_TYPE_ID = "MONEY_TYPE_ID";
-
-    public static final String COMMISSION_CHARGE = "COMMISSION_CHARGE";
-
-    public static final String PAYMENT_ITEM_TYPE = "PAYMENT_ITEM_TYPE";
-
-    public static final String PAYMENT_ITEM_STATE = "PAYMENT_ITEM_STATE";
-
-    public static final String NOTIFY_URL = "NOTIFY_URL";
-
-    public static final String MERCHANT_PUBLIC_KEY = "MERCHANT_PUBLIC_KEY";
-
-    public static final String SIGNATURE_PRIVATE_KEY = "SIGNATURE_PRIVATE_KEY";
-
-    public static final String PROJECT_COMMITMENT = "PROJECT_COMMITMENT";
-
-    public static final String PROJECT_REQUISITION = "PROJECT_REQUISITION";
-
-    public static final String CASH_BANK_ID = "CASH_BANK_ID";
-
-    public static final String IS_CHANNEL_CASH = "IS_CHANNEL_CASH";
-
-    public static final String IS_AUTO_CASH = "IS_AUTO_CASH";
-
-    public static final String IS_DRAW_BILL = "IS_DRAW_BILL";
-
-    public static final String IS_CONTROL_REFUND = "IS_CONTROL_REFUND";
-
-    public static final String CREATER = "CREATER";
-
-    public static final String CREATE_DATE = "CREATE_DATE";
-
-    public static final String AUDITOR = "AUDITOR";
-
-    public static final String AUDIT_TIME = "AUDIT_TIME";
 
     @Override
     protected Serializable pkVal() {

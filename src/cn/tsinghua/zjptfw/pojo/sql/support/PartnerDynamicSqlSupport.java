@@ -14,31 +14,31 @@ import java.util.Date;
  * </p>
  *
  * @author guotao
- * @since 2018-11-12
+ * @since 2018-11-15
  */
 public final class PartnerDynamicSqlSupport {
 
-     public static final PartnerDynamic table = new PartnerDynamic();
+     public static final PartnerDynamic tablePartner = new PartnerDynamic();
     /**
      * 部门ID
      */
-    public static final SqlColumn<String> partnerId = table.partnerId;
+    public static final SqlColumn<String> partnerId = tablePartner.partnerId;
     /**
      * 部门中文名
      */
-    public static final SqlColumn<String> partnerName = table.partnerName;
+    public static final SqlColumn<String> partnerName = tablePartner.partnerName;
     /**
      * 部门英文名
      */
-    public static final SqlColumn<String> partnerEname = table.partnerEname;
+    public static final SqlColumn<String> partnerEname = tablePartner.partnerEname;
     /**
      * 部门显示名
      */
-    public static final SqlColumn<String> partnerVname = table.partnerVname;
+    public static final SqlColumn<String> partnerVname = tablePartner.partnerVname;
     /**
      * 启用标志
      */
-    public static final SqlColumn<String> enableFlag = table.enableFlag;
+    public static final SqlColumn<String> enableFlag = tablePartner.enableFlag;
 
 
     public static final class PartnerDynamic extends SqlTable {

@@ -16,13 +16,12 @@ import java.io.Serializable;
  * </p>
  *
  * @author guotao
- * @since 2018-11-09
+ * @since 2018-11-15
  */
 
 @Table(name="ZJJS_PROVINCE")
 public class Province extends Model<Province> {
 
-    private static final long serialVersionUID = 1L;
 
     @TableId(value = "SID", type = IdType.INPUT)
     private Long sid;
@@ -54,12 +53,6 @@ public class Province extends Model<Province> {
     public void setProvince(String province) {
         this.province = province;
     }
-
-    public static final String SID = "SID";
-
-    public static final String PROVINCEID = "PROVINCEID";
-
-    public static final String PROVINCE = "PROVINCE";
 
     @Override
     protected Serializable pkVal() {

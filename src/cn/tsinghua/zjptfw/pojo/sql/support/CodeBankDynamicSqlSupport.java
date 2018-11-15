@@ -3,6 +3,9 @@ package cn.tsinghua.zjptfw.pojo.sql.support;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
 
+import java.sql.JDBCType;
+import java.util.Date;
+
 /**
  * <p>
  * 银行代码表
@@ -11,23 +14,23 @@ import org.mybatis.dynamic.sql.SqlTable;
  * </p>
  *
  * @author guotao
- * @since 2018-11-12
+ * @since 2018-11-15
  */
 public final class CodeBankDynamicSqlSupport {
 
-     public static final CodeBankDynamic table = new CodeBankDynamic();
+     public static final CodeBankDynamic tableCodeBank = new CodeBankDynamic();
     /**
      * 银行编码
      */
-    public static final SqlColumn<String> bankCode = table.bankCode;
+    public static final SqlColumn<String> bankCode = tableCodeBank.bankCode;
     /**
      * 银行名称
      */
-    public static final SqlColumn<String> bankName = table.bankName;
+    public static final SqlColumn<String> bankName = tableCodeBank.bankName;
     /**
      * 启用标志
      */
-    public static final SqlColumn<String> enableFlag = table.enableFlag;
+    public static final SqlColumn<String> enableFlag = tableCodeBank.enableFlag;
 
 
     public static final class CodeBankDynamic extends SqlTable {

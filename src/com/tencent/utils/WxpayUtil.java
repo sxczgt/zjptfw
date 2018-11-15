@@ -11,6 +11,7 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ import cn.tsinghua.sftp.util.TysfPropertiesUtil;
 
 public class WxpayUtil {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		visitUrl("https://mp.weixin.qq.com/cgi-bin/login?lang=zh_CN");
 	}
 
@@ -281,7 +282,7 @@ public class WxpayUtil {
 		StringBuffer sb = new StringBuffer();
 		try {
 			url = new URL(urlStr);
-			in = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+			in = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
 			String str = null;
 			while ((str = in.readLine()) != null) {
 				sb.append(str);

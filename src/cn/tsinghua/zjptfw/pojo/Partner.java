@@ -16,13 +16,12 @@ import java.io.Serializable;
  * </p>
  *
  * @author guotao
- * @since 2018-11-09
+ * @since 2018-11-15
  */
 
 @Table(name="ZJJS_PARTNER")
 public class Partner extends Model<Partner> {
 
-    private static final long serialVersionUID = 1L;
 
     /**
      * 部门ID
@@ -89,16 +88,6 @@ public class Partner extends Model<Partner> {
     public void setEnableFlag(String enableFlag) {
         this.enableFlag = enableFlag;
     }
-
-    public static final String PARTNER_ID = "PARTNER_ID";
-
-    public static final String PARTNER_NAME = "PARTNER_NAME";
-
-    public static final String PARTNER_ENAME = "PARTNER_ENAME";
-
-    public static final String PARTNER_VNAME = "PARTNER_VNAME";
-
-    public static final String ENABLE_FLAG = "ENABLE_FLAG";
 
     @Override
     protected Serializable pkVal() {

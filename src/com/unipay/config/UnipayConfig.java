@@ -178,11 +178,7 @@ public class UnipayConfig {
 		// 生成签名
 		RSASign rsa = new RSASign();
 		rsa.setPublicKey(key);
-		if (rsa.verifySigature(sign, str)) {
-			return true;
-		} else {
-			return false;
-		}
+        return rsa.verifySigature(sign, str);
 	}
 
 	public static void main(String[] args) {

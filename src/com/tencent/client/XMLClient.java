@@ -35,6 +35,7 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
 import java.util.*;
 import java.util.zip.GZIPInputStream;
@@ -180,13 +181,13 @@ public class XMLClient {
             con.setRequestProperty("connection", "Keep-Alive");
             con.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
             // 输出流，写数据
-            out = new OutputStreamWriter(con.getOutputStream(), "UTF-8");
+            out = new OutputStreamWriter(con.getOutputStream(), StandardCharsets.UTF_8);
             // 发送请求参数
-            out.write(new String(xml.getBytes("UTF-8")));
+            out.write(new String(xml.getBytes(StandardCharsets.UTF_8)));
             // flush输出流的缓冲
             out.flush();
             // 读取服务器的响应内容并显示 定义BufferedReader输入流来读取URL的响应
-            br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+            br = new BufferedReader(new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8));
             String line = "";
             StringBuffer buffer = new StringBuffer();
             while ((line = br.readLine()) != null) {
@@ -247,7 +248,7 @@ public class XMLClient {
     public WxpayResult resolveGzip(byte[] bytes) {
         WxpayResult result = new WxpayResult();
         try {
-            String xml = new String(bytes, "UTF-8");
+            String xml = new String(bytes, StandardCharsets.UTF_8);
             if (StringUtils.isEmpty(xml)) {
                 return result;
             }

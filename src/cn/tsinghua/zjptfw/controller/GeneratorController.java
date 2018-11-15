@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,7 +20,7 @@ public class GeneratorController {
     JdbcTemplate jdbcTemplate;
 
     @RequestMapping("doGenerator")
-    public String doGenerator() throws ServletException {
+    public String doGenerator() {
         System.out.println("1111");
         List<TableCommentRowMapper.TableComment> list = jdbcTemplate.query("select * from user_tab_comments where table_name like 'ZJJS_%'", new TableCommentRowMapper());
 

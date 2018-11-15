@@ -4,7 +4,7 @@ import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
 
 import java.sql.Clob;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -14,44 +14,44 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author guotao
- * @since 2018-11-12
+ * @since 2018-11-15
  */
 public final class Log4jRecordsDynamicSqlSupport {
 
-     public static final Log4jRecordsDynamic table = new Log4jRecordsDynamic();
+     public static final Log4jRecordsDynamic tableLog4jRecords = new Log4jRecordsDynamic();
     /**
      * uuid（主键）
      */
-    public static final SqlColumn<String> uuid = table.uuid;
+    public static final SqlColumn<Long> uuid = tableLog4jRecords.uuid;
     /**
      * 时间
      */
-    public static final SqlColumn<LocalDateTime> cdated = table.cdated;
+    public static final SqlColumn<Date> cdated = tableLog4jRecords.cdated;
     /**
      * 异常类
      */
-    public static final SqlColumn<String> clogger = table.clogger;
+    public static final SqlColumn<String> clogger = tableLog4jRecords.clogger;
     /**
      * 异常级别
      */
-    public static final SqlColumn<String> clevel = table.clevel;
+    public static final SqlColumn<String> clevel = tableLog4jRecords.clevel;
     /**
      * 具体异常信息
      */
-    public static final SqlColumn<Clob> cmessage = table.cmessage;
+    public static final SqlColumn<Clob> cmessage = tableLog4jRecords.cmessage;
     /**
      * 异常所属系统
      */
-    public static final SqlColumn<String> csystem = table.csystem;
+    public static final SqlColumn<String> csystem = tableLog4jRecords.csystem;
 
 
     public static final class Log4jRecordsDynamic extends SqlTable {
 
 
-        public final SqlColumn<String> uuid = column("UUID");
+        public final SqlColumn<Long> uuid = column("UUID");
 
 
-        public final SqlColumn<LocalDateTime> cdated = column("CDATED");
+        public final SqlColumn<Date> cdated = column("CDATED");
 
 
         public final SqlColumn<String> clogger = column("CLOGGER");

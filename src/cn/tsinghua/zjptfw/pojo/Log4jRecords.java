@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.sql.Clob;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -18,25 +18,24 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author guotao
- * @since 2018-11-09
+ * @since 2018-11-15
  */
 
 @Table(name="ZJJS_LOG4J_RECORDS")
 public class Log4jRecords extends Model<Log4jRecords> {
 
-    private static final long serialVersionUID = 1L;
 
     /**
      * uuid（主键）
      */
     @TableId(value = "UUID", type = IdType.INPUT)
-    private String uuid;
+    private Long uuid;
 
     /**
      * 时间
      */
     @TableField("CDATED")
-    private LocalDateTime cdated;
+    private Date cdated;
 
     /**
      * 异常类
@@ -62,18 +61,18 @@ public class Log4jRecords extends Model<Log4jRecords> {
     @TableField("CSYSTEM")
     private String csystem;
 
-    public String getUuid() {
+    public Long getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(Long uuid) {
         this.uuid = uuid;
     }
-    public LocalDateTime getCdated() {
+    public Date getCdated() {
         return cdated;
     }
 
-    public void setCdated(LocalDateTime cdated) {
+    public void setCdated(Date cdated) {
         this.cdated = cdated;
     }
     public String getClogger() {
@@ -104,18 +103,6 @@ public class Log4jRecords extends Model<Log4jRecords> {
     public void setCsystem(String csystem) {
         this.csystem = csystem;
     }
-
-    public static final String UUID = "UUID";
-
-    public static final String CDATED = "CDATED";
-
-    public static final String CLOGGER = "CLOGGER";
-
-    public static final String CLEVEL = "CLEVEL";
-
-    public static final String CMESSAGE = "CMESSAGE";
-
-    public static final String CSYSTEM = "CSYSTEM";
 
     @Override
     protected Serializable pkVal() {

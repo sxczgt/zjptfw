@@ -343,27 +343,27 @@ public class XMLBuilder {
 			Element root = document.getRootElement();
 			for (int i = 0; i < list.size(); i++) {
 				Map<String, String> map = list.get(i);
-				Element e = getExistElement(document, map.get("MSG_ID").toString());
+				Element e = getExistElement(document, map.get("MSG_ID"));
 				if (e != null) {
 					e.getChild("REV_TIME").setText(curr_time);
-					e.getChild("MSG_TIME").setText(map.get("MSG_TIME").toString());
-					e.getChild("MSG_LEVEL").setText(map.get("MSG_LEVEL").toString());
-					e.getChild("SUBJECT").setText(map.get("SUBJECT").toString());
-					e.getChild("DETAIL").setText(map.get("DETAIL").toString());
+					e.getChild("MSG_TIME").setText(map.get("MSG_TIME"));
+					e.getChild("MSG_LEVEL").setText(map.get("MSG_LEVEL"));
+					e.getChild("SUBJECT").setText(map.get("SUBJECT"));
+					e.getChild("DETAIL").setText(map.get("DETAIL"));
 				} else {
 					Element element = new Element("TIP");
 					Element e1 = new Element("MSG_ID");
-					e1.setText(map.get("MSG_ID").toString());
+					e1.setText(map.get("MSG_ID"));
 					Element e2 = new Element("REV_TIME");
 					e2.setText(curr_time);
 					Element e3 = new Element("MSG_TIME");
-					e3.setText(map.get("MSG_TIME").toString());
+					e3.setText(map.get("MSG_TIME"));
 					Element e4 = new Element("MSG_LEVEL");
-					e4.setText(map.get("MSG_LEVEL").toString());
+					e4.setText(map.get("MSG_LEVEL"));
 					Element e5 = new Element("SUBJECT");
-					e5.setText(map.get("SUBJECT").toString());
+					e5.setText(map.get("SUBJECT"));
 					Element e6 = new Element("DETAIL");
-					e6.setText(map.get("DETAIL").toString());
+					e6.setText(map.get("DETAIL"));
 					element.addContent(e1);
 					element.addContent(e2);
 					element.addContent(e3);
@@ -454,7 +454,7 @@ public class XMLBuilder {
 				}
 			}
 			for (int i = 0; i < l.size(); i++) {
-				root.removeContent((Element) l.get(i));
+				root.removeContent(l.get(i));
 			}
 			outDocumentToFile(document, "  ", "utf-8", filename);
 		} catch (IOException eee) {

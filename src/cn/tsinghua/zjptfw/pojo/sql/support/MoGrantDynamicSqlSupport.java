@@ -3,6 +3,9 @@ package cn.tsinghua.zjptfw.pojo.sql.support;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
 
+import java.sql.JDBCType;
+import java.util.Date;
+
 /**
  * <p>
  * 字典维护权限
@@ -11,27 +14,27 @@ import org.mybatis.dynamic.sql.SqlTable;
  * </p>
  *
  * @author guotao
- * @since 2018-11-12
+ * @since 2018-11-15
  */
 public final class MoGrantDynamicSqlSupport {
 
-     public static final MoGrantDynamic table = new MoGrantDynamic();
+     public static final MoGrantDynamic tableMoGrant = new MoGrantDynamic();
     /**
      * ID
      */
-    public static final SqlColumn<Long> id = table.id;
+    public static final SqlColumn<Long> id = tableMoGrant.id;
     /**
      * mo_dic表中的dic字典代码
      */
-    public static final SqlColumn<String> dicCode = table.dicCode;
+    public static final SqlColumn<String> dicCode = tableMoGrant.dicCode;
     /**
      * 角色表ID
      */
-    public static final SqlColumn<String> roleId = table.roleId;
+    public static final SqlColumn<String> roleId = tableMoGrant.roleId;
     /**
      * auth_dept中的dwbh单位编号
      */
-    public static final SqlColumn<String> dwbh = table.dwbh;
+    public static final SqlColumn<String> dwbh = tableMoGrant.dwbh;
 
 
     public static final class MoGrantDynamic extends SqlTable {

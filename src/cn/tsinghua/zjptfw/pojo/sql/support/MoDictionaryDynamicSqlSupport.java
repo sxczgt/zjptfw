@@ -11,35 +11,35 @@ import org.mybatis.dynamic.sql.SqlTable;
  * </p>
  *
  * @author guotao
- * @since 2018-11-12
+ * @since 2018-11-15
  */
 public final class MoDictionaryDynamicSqlSupport {
 
-     public static final MoDictionaryDynamic table = new MoDictionaryDynamic();
+     public static final MoDictionaryDynamic tableMoDictionary = new MoDictionaryDynamic();
     /**
      * 顺序号（主键）
      */
-    public static final SqlColumn<Long> xh = table.xh;
+    public static final SqlColumn<Long> xh = tableMoDictionary.xh;
     /**
      * 字典项值(全称
      */
-    public static final SqlColumn<String> dfvalue = table.dfvalue;
+    public static final SqlColumn<String> dfvalue = tableMoDictionary.dfvalue;
     /**
      * 字典
      */
-    public static final SqlColumn<String> dic = table.dic;
+    public static final SqlColumn<String> dic = tableMoDictionary.dic;
     /**
      * 字典项
      */
-    public static final SqlColumn<String> dkey = table.dkey;
+    public static final SqlColumn<String> dkey = tableMoDictionary.dkey;
     /**
      * 字典项对应值
      */
-    public static final SqlColumn<String> dvalue = table.dvalue;
+    public static final SqlColumn<String> dvalue = tableMoDictionary.dvalue;
     /**
      * 备注
      */
-    public static final SqlColumn<String> memo = table.memo;
+    public static final SqlColumn<String> memo = tableMoDictionary.memo;
 
 
     public static final class MoDictionaryDynamic extends SqlTable {

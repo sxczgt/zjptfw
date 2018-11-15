@@ -3,7 +3,8 @@ package cn.tsinghua.zjptfw.pojo.sql.support;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
 
-import java.time.LocalDateTime;
+import java.sql.JDBCType;
+import java.util.Date;
 
 /**
  * <p>
@@ -13,171 +14,171 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author guotao
- * @since 2018-11-12
+ * @since 2018-11-15
  */
 public final class PaymentItemDynamicSqlSupport {
 
-     public static final PaymentItemDynamic table = new PaymentItemDynamic();
+     public static final PaymentItemDynamic tablePaymentItem = new PaymentItemDynamic();
     /**
      * 项目ID
      */
-    public static final SqlColumn<String> paymentItemId = table.paymentItemId;
+    public static final SqlColumn<String> paymentItemId = tablePaymentItem.paymentItemId;
     /**
      * 部门ID（申请单位）
      */
-    public static final SqlColumn<String> partnerId = table.partnerId;
+    public static final SqlColumn<String> partnerId = tablePaymentItem.partnerId;
     /**
      * 项目中文名称
      */
-    public static final SqlColumn<String> paymentItemName = table.paymentItemName;
+    public static final SqlColumn<String> paymentItemName = tablePaymentItem.paymentItemName;
     /**
      * 项目中文简称(限制四个汉字)
      */
-    public static final SqlColumn<String> paymentItemSname = table.paymentItemSname;
+    public static final SqlColumn<String> paymentItemSname = tablePaymentItem.paymentItemSname;
     /**
      * 项目英文名称
      */
-    public static final SqlColumn<String> paymentItemEname = table.paymentItemEname;
+    public static final SqlColumn<String> paymentItemEname = tablePaymentItem.paymentItemEname;
     /**
      * 项目收费内容
      */
-    public static final SqlColumn<String> chargeContent = table.chargeContent;
+    public static final SqlColumn<String> chargeContent = tablePaymentItem.chargeContent;
     /**
      * 支付开始日期
      */
-    public static final SqlColumn<LocalDateTime> payBegin = table.payBegin;
+    public static final SqlColumn<Date> payBegin = tablePaymentItem.payBegin;
     /**
      * 支付结束日期
      */
-    public static final SqlColumn<LocalDateTime> payEnd = table.payEnd;
+    public static final SqlColumn<Date> payEnd = tablePaymentItem.payEnd;
     /**
      * 在用设备个数(设备申请数保存在设备申请表中)
      */
-    public static final SqlColumn<Double> deviceCount = table.deviceCount;
+    public static final SqlColumn<Integer> deviceCount = tablePaymentItem.deviceCount;
     /**
      * 财务部门编码
      */
-    public static final SqlColumn<String> financialDeptCode = table.financialDeptCode;
+    public static final SqlColumn<String> financialDeptCode = tablePaymentItem.financialDeptCode;
     /**
      * 财务部门名称
      */
-    public static final SqlColumn<String> financialDeptName = table.financialDeptName;
+    public static final SqlColumn<String> financialDeptName = tablePaymentItem.financialDeptName;
     /**
      * 财务项目编码
      */
-    public static final SqlColumn<String> financialItemCode = table.financialItemCode;
+    public static final SqlColumn<String> financialItemCode = tablePaymentItem.financialItemCode;
     /**
      * 财务项目名称
      */
-    public static final SqlColumn<String> financialItemName = table.financialItemName;
+    public static final SqlColumn<String> financialItemName = tablePaymentItem.financialItemName;
     /**
      * 项目负责人证号
      */
-    public static final SqlColumn<String> projectManagerCode = table.projectManagerCode;
+    public static final SqlColumn<String> projectManagerCode = tablePaymentItem.projectManagerCode;
     /**
      * 项目负责人姓名
      */
-    public static final SqlColumn<String> projectManagerName = table.projectManagerName;
+    public static final SqlColumn<String> projectManagerName = tablePaymentItem.projectManagerName;
     /**
      * 经办人证号
      */
-    public static final SqlColumn<String> operatorCode = table.operatorCode;
+    public static final SqlColumn<String> operatorCode = tablePaymentItem.operatorCode;
     /**
      * 经办人姓名
      */
-    public static final SqlColumn<String> operatorName = table.operatorName;
+    public static final SqlColumn<String> operatorName = tablePaymentItem.operatorName;
     /**
      * 经办人电话
      */
-    public static final SqlColumn<String> operatorPhone = table.operatorPhone;
+    public static final SqlColumn<String> operatorPhone = tablePaymentItem.operatorPhone;
     /**
      * 经办人邮箱
      */
-    public static final SqlColumn<String> operatorEmail = table.operatorEmail;
+    public static final SqlColumn<String> operatorEmail = tablePaymentItem.operatorEmail;
     /**
      * 经办人开通项目负责人权限
      */
-    public static final SqlColumn<String> operatorPmPower = table.operatorPmPower;
+    public static final SqlColumn<String> operatorPmPower = tablePaymentItem.operatorPmPower;
     /**
      * 支付网站网址
      */
-    public static final SqlColumn<String> paymentWebUrl = table.paymentWebUrl;
+    public static final SqlColumn<String> paymentWebUrl = tablePaymentItem.paymentWebUrl;
     /**
      * 人民币计价
      */
-    public static final SqlColumn<String> rmbValuation = table.rmbValuation;
+    public static final SqlColumn<String> rmbValuation = tablePaymentItem.rmbValuation;
     /**
      * 交易币种(默认为人民币)
      */
-    public static final SqlColumn<String> moneyTypeId = table.moneyTypeId;
+    public static final SqlColumn<String> moneyTypeId = tablePaymentItem.moneyTypeId;
     /**
      * 手续费承担(项目组、持卡人、免费（需要添加到MO_DICTIONARY表中）)
      */
-    public static final SqlColumn<String> commissionCharge = table.commissionCharge;
+    public static final SqlColumn<String> commissionCharge = tablePaymentItem.commissionCharge;
     /**
      * 项目收费类型(收费类型存在于MO表中，关键字：PAYMENT_TYPE)
      */
-    public static final SqlColumn<String> paymentItemType = table.paymentItemType;
+    public static final SqlColumn<String> paymentItemType = tablePaymentItem.paymentItemType;
     /**
      * 项目审批状态
      */
-    public static final SqlColumn<String> paymentItemState = table.paymentItemState;
+    public static final SqlColumn<String> paymentItemState = tablePaymentItem.paymentItemState;
     /**
      * 导步通知地址(如果商户不在流水中传入异步通知地址，则从此处读取)
      */
-    public static final SqlColumn<String> notifyUrl = table.notifyUrl;
+    public static final SqlColumn<String> notifyUrl = tablePaymentItem.notifyUrl;
     /**
      * 商户公钥(商户提供)
      */
-    public static final SqlColumn<String> merchantPublicKey = table.merchantPublicKey;
+    public static final SqlColumn<String> merchantPublicKey = tablePaymentItem.merchantPublicKey;
     /**
      * 签名私钥(平台生成)
      */
-    public static final SqlColumn<String> signaturePrivateKey = table.signaturePrivateKey;
+    public static final SqlColumn<String> signaturePrivateKey = tablePaymentItem.signaturePrivateKey;
     /**
      * 项目承诺书(保存文件名，大小，路径的json串)
      */
-    public static final SqlColumn<String> projectCommitment = table.projectCommitment;
+    public static final SqlColumn<String> projectCommitment = tablePaymentItem.projectCommitment;
     /**
      * 项目申请单(保存文件名，大小，路径的json串)
      */
-    public static final SqlColumn<String> projectRequisition = table.projectRequisition;
+    public static final SqlColumn<String> projectRequisition = tablePaymentItem.projectRequisition;
     /**
      * 收款银行ID(关联收款银行表ID)
      */
-    public static final SqlColumn<String> cashBankId = table.cashBankId;
+    public static final SqlColumn<String> cashBankId = tablePaymentItem.cashBankId;
     /**
      * 是否按渠道提款(是-按渠道提款，否-按渠道类型提款)
      */
-    public static final SqlColumn<String> isChannelCash = table.isChannelCash;
+    public static final SqlColumn<String> isChannelCash = tablePaymentItem.isChannelCash;
     /**
      * 是否自动提款
      */
-    public static final SqlColumn<String> isAutoCash = table.isAutoCash;
+    public static final SqlColumn<String> isAutoCash = tablePaymentItem.isAutoCash;
     /**
      * 是否开发票
      */
-    public static final SqlColumn<String> isDrawBill = table.isDrawBill;
+    public static final SqlColumn<String> isDrawBill = tablePaymentItem.isDrawBill;
     /**
      * 是否控制退款(是：允许隔天退款，自动提款时预留款；否：不允许隔天退款)
      */
-    public static final SqlColumn<String> isControlRefund = table.isControlRefund;
+    public static final SqlColumn<String> isControlRefund = tablePaymentItem.isControlRefund;
     /**
      * 项目创建人
      */
-    public static final SqlColumn<String> creater = table.creater;
+    public static final SqlColumn<String> creater = tablePaymentItem.creater;
     /**
      * 创建时间
      */
-    public static final SqlColumn<LocalDateTime> createDate = table.createDate;
+    public static final SqlColumn<Date> createDate = tablePaymentItem.createDate;
     /**
      * 财务审核人
      */
-    public static final SqlColumn<String> auditor = table.auditor;
+    public static final SqlColumn<String> auditor = tablePaymentItem.auditor;
     /**
      * 审核时间
      */
-    public static final SqlColumn<LocalDateTime> auditTime = table.auditTime;
+    public static final SqlColumn<Date> auditTime = tablePaymentItem.auditTime;
 
 
     public static final class PaymentItemDynamic extends SqlTable {
@@ -201,13 +202,13 @@ public final class PaymentItemDynamicSqlSupport {
         public final SqlColumn<String> chargeContent = column("CHARGE_CONTENT");
 
 
-        public final SqlColumn<LocalDateTime> payBegin = column("PAY_BEGIN");
+        public final SqlColumn<Date> payBegin = column("PAY_BEGIN");
 
 
-        public final SqlColumn<LocalDateTime> payEnd = column("PAY_END");
+        public final SqlColumn<Date> payEnd = column("PAY_END");
 
 
-        public final SqlColumn<Double> deviceCount = column("DEVICE_COUNT");
+        public final SqlColumn<Integer> deviceCount = column("DEVICE_COUNT");
 
 
         public final SqlColumn<String> financialDeptCode = column("FINANCIAL_DEPT_CODE");
@@ -294,13 +295,13 @@ public final class PaymentItemDynamicSqlSupport {
         public final SqlColumn<String> creater = column("CREATER");
 
 
-        public final SqlColumn<LocalDateTime> createDate = column("CREATE_DATE");
+        public final SqlColumn<Date> createDate = column("CREATE_DATE");
 
 
         public final SqlColumn<String> auditor = column("AUDITOR");
 
 
-        public final SqlColumn<LocalDateTime> auditTime = column("AUDIT_TIME");
+        public final SqlColumn<Date> auditTime = column("AUDIT_TIME");
 
          public PaymentItemDynamic() {
             super("ZJJS_PAYMENT_ITEM");

@@ -14,31 +14,31 @@ import java.util.Date;
  * </p>
  *
  * @author guotao
- * @since 2018-11-12
+ * @since 2018-11-15
  */
 public final class PaymentChannelDynamicSqlSupport {
 
-     public static final PaymentChannelDynamic table = new PaymentChannelDynamic();
+     public static final PaymentChannelDynamic tablePaymentChannel = new PaymentChannelDynamic();
     /**
      * 支付渠道ID
      */
-    public static final SqlColumn<String> paymentChannelId = table.paymentChannelId;
+    public static final SqlColumn<String> paymentChannelId = tablePaymentChannel.paymentChannelId;
     /**
      * 支付渠道编码
      */
-    public static final SqlColumn<String> paymentChannelCode = table.paymentChannelCode;
+    public static final SqlColumn<String> paymentChannelCode = tablePaymentChannel.paymentChannelCode;
     /**
      * 支付渠道名称
      */
-    public static final SqlColumn<String> paymentChannelName = table.paymentChannelName;
+    public static final SqlColumn<String> paymentChannelName = tablePaymentChannel.paymentChannelName;
     /**
      * 对账表名
      */
-    public static final SqlColumn<String> accountTable = table.accountTable;
+    public static final SqlColumn<String> accountTable = tablePaymentChannel.accountTable;
     /**
      * 启用标志
      */
-    public static final SqlColumn<String> enableFlag = table.enableFlag;
+    public static final SqlColumn<String> enableFlag = tablePaymentChannel.enableFlag;
 
 
     public static final class PaymentChannelDynamic extends SqlTable {

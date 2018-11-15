@@ -18,7 +18,7 @@ import java.util.Date;
  */
 public final class ${entity}DynamicSqlSupport {
 
-     public static final ${entity}Dynamic table = new ${entity}Dynamic();
+     public static final ${entity}Dynamic table${entity} = new ${entity}Dynamic();
 <#-- ----------  BEGIN 字段循环遍历  ---------->
 <#list table.fields as field>
 <#if field.keyFlag>
@@ -29,7 +29,7 @@ public final class ${entity}DynamicSqlSupport {
      * ${field.comment}
      */
 </#if>
-    public static final SqlColumn<${field.propertyType}> ${field.propertyName} = table.${field.propertyName};
+    public static final SqlColumn<${field.propertyType}> ${field.propertyName} = table${entity}.${field.propertyName};
 </#list>
 <#------------  END 字段循环遍历  ---------->
 

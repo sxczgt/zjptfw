@@ -3,7 +3,7 @@ package cn.tsinghua.zjptfw.pojo.sql.support;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -13,47 +13,47 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author guotao
- * @since 2018-11-12
+ * @since 2018-11-15
  */
 public final class AuthLogDynamicSqlSupport {
 
-     public static final AuthLogDynamic table = new AuthLogDynamic();
+     public static final AuthLogDynamic tableAuthLog = new AuthLogDynamic();
     /**
      * ID
      */
-    public static final SqlColumn<Long> id = table.id;
+    public static final SqlColumn<Long> id = tableAuthLog.id;
     /**
      * 被del,insert,update的数据所在表名
      */
-    public static final SqlColumn<String> dataTablename = table.dataTablename;
+    public static final SqlColumn<String> dataTablename = tableAuthLog.dataTablename;
     /**
      * 操作时间
      */
-    public static final SqlColumn<LocalDateTime> opTime = table.opTime;
+    public static final SqlColumn<Date> opTime = tableAuthLog.opTime;
     /**
      * 操作描述
      */
-    public static final SqlColumn<String> opDesc = table.opDesc;
+    public static final SqlColumn<String> opDesc = tableAuthLog.opDesc;
     /**
      * 数据操作的具体SQL语句
      */
-    public static final SqlColumn<String> opSql = table.opSql;
+    public static final SqlColumn<String> opSql = tableAuthLog.opSql;
     /**
      * 校内用户用校园卡号，校外用户用auth_user表的username字段
      */
-    public static final SqlColumn<String> opZjh = table.opZjh;
+    public static final SqlColumn<String> opZjh = tableAuthLog.opZjh;
     /**
      * 操作人姓名
      */
-    public static final SqlColumn<String> opXm = table.opXm;
+    public static final SqlColumn<String> opXm = tableAuthLog.opXm;
     /**
      * 所在IP
      */
-    public static final SqlColumn<String> opIp = table.opIp;
+    public static final SqlColumn<String> opIp = tableAuthLog.opIp;
     /**
      * 子系统名称
      */
-    public static final SqlColumn<String> opSystem = table.opSystem;
+    public static final SqlColumn<String> opSystem = tableAuthLog.opSystem;
 
 
     public static final class AuthLogDynamic extends SqlTable {
@@ -65,7 +65,7 @@ public final class AuthLogDynamicSqlSupport {
         public final SqlColumn<String> dataTablename = column("DATA_TABLENAME");
 
 
-        public final SqlColumn<LocalDateTime> opTime = column("OP_TIME");
+        public final SqlColumn<Date> opTime = column("OP_TIME");
 
 
         public final SqlColumn<String> opDesc = column("OP_DESC");

@@ -79,11 +79,7 @@ public class RSASign {
 			sigEng.update(src.getBytes());
 
 			byte[] sign1 = hexStrToBytes(sign);
-			if (sigEng.verify(sign1)) {
-				return true;
-			} else {
-				return false;
-			}
+            return sigEng.verify(sign1);
 		} catch (Exception e) {
 			return false;
 		}

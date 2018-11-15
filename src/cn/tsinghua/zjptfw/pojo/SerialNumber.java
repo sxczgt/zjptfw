@@ -16,13 +16,12 @@ import java.io.Serializable;
  * </p>
  *
  * @author guotao
- * @since 2018-11-09
+ * @since 2018-11-15
  */
 
 @Table(name="ZJJS_SERIAL_NUMBER")
 public class SerialNumber extends Model<SerialNumber> {
 
-    private static final long serialVersionUID = 1L;
 
     /**
      * 日期
@@ -47,6 +46,12 @@ public class SerialNumber extends Model<SerialNumber> {
      */
     @TableField("SN_NO")
     private Long snNo;
+
+    /**
+     * 支付项目号
+     */
+    @TableField("SN_PAYMENTITEM_NO")
+    private Long snPaymentitemNo;
 
     public String getSnDate() {
         return snDate;
@@ -76,14 +81,13 @@ public class SerialNumber extends Model<SerialNumber> {
     public void setSnNo(Long snNo) {
         this.snNo = snNo;
     }
+    public Long getSnPaymentitemNo() {
+        return snPaymentitemNo;
+    }
 
-    public static final String SN_DATE = "SN_DATE";
-
-    public static final String SN_FLOW_NO = "SN_FLOW_NO";
-
-    public static final String SN_TRADE_NO = "SN_TRADE_NO";
-
-    public static final String SN_NO = "SN_NO";
+    public void setSnPaymentitemNo(Long snPaymentitemNo) {
+        this.snPaymentitemNo = snPaymentitemNo;
+    }
 
     @Override
     protected Serializable pkVal() {
@@ -97,6 +101,7 @@ public class SerialNumber extends Model<SerialNumber> {
         ", snFlowNo=" + snFlowNo +
         ", snTradeNo=" + snTradeNo +
         ", snNo=" + snNo +
+        ", snPaymentitemNo=" + snPaymentitemNo +
         "}";
     }
 }

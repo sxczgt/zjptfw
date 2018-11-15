@@ -16,13 +16,12 @@ import java.io.Serializable;
  * </p>
  *
  * @author guotao
- * @since 2018-11-09
+ * @since 2018-11-15
  */
 
 @Table(name="ZJJS_MO_DICTIONARY")
 public class MoDictionary extends Model<MoDictionary> {
 
-    private static final long serialVersionUID = 1L;
 
     /**
      * 顺序号（主键）
@@ -102,18 +101,6 @@ public class MoDictionary extends Model<MoDictionary> {
     public void setMemo(String memo) {
         this.memo = memo;
     }
-
-    public static final String XH = "XH";
-
-    public static final String DFVALUE = "DFVALUE";
-
-    public static final String DIC = "DIC";
-
-    public static final String DKEY = "DKEY";
-
-    public static final String DVALUE = "DVALUE";
-
-    public static final String MEMO = "MEMO";
 
     @Override
     protected Serializable pkVal() {

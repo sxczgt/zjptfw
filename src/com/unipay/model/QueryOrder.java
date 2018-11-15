@@ -95,9 +95,7 @@ public class QueryOrder {
 			// 生成签名
 			RSASign rsa = new RSASign();
 			rsa.setPublicKey(key);
-			if (rsa.verifySigature(sign, str)) {
-				return true;
-			}
+            return rsa.verifySigature(sign, str);
 		}
 		return false;
 	}

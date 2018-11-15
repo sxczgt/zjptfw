@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
@@ -78,7 +79,7 @@ public class RsaUtil {
 		RSAPublicKey pubKey = (RSAPublicKey) getPubKey(certFile);
 		// 选定加密模式
 		cipher.init(Cipher.ENCRYPT_MODE, pubKey);
-		byte[] cipherText = cipher.doFinal(content.getBytes("UTF-8"));
+		byte[] cipherText = cipher.doFinal(content.getBytes(StandardCharsets.UTF_8));
 		// 加密后的东西
 		String outB64 = Base64.encode(cipherText);
 		return outB64;

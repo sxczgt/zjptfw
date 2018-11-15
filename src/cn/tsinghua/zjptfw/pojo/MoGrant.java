@@ -16,13 +16,12 @@ import java.io.Serializable;
  * </p>
  *
  * @author guotao
- * @since 2018-11-09
+ * @since 2018-11-15
  */
 
 @Table(name="ZJJS_MO_GRANT")
 public class MoGrant extends Model<MoGrant> {
 
-    private static final long serialVersionUID = 1L;
 
     /**
      * ID
@@ -76,14 +75,6 @@ public class MoGrant extends Model<MoGrant> {
     public void setDwbh(String dwbh) {
         this.dwbh = dwbh;
     }
-
-    public static final String ID = "ID";
-
-    public static final String DIC_CODE = "DIC_CODE";
-
-    public static final String ROLE_ID = "ROLE_ID";
-
-    public static final String DWBH = "DWBH";
 
     @Override
     protected Serializable pkVal() {

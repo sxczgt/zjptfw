@@ -7,23 +7,22 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
- *
+ * <p>
  * 操作日志表(insert,uppdate,delete操作都要记录)
  * table select sql:
    select * from ZJJS_AUTH_LOG a where 1=1
- *
+ * </p>
  *
  * @author guotao
- * @since 2018-11-09
+ * @since 2018-11-15
  */
 
 @Table(name="ZJJS_AUTH_LOG")
 public class AuthLog extends Model<AuthLog> {
 
-    private static final long serialVersionUID = 1L;
 
     /**
      * ID
@@ -41,7 +40,7 @@ public class AuthLog extends Model<AuthLog> {
      * 操作时间
      */
     @TableField("OP_TIME")
-    private LocalDateTime opTime;
+    private Date opTime;
 
     /**
      * 操作描述
@@ -93,11 +92,11 @@ public class AuthLog extends Model<AuthLog> {
     public void setDataTablename(String dataTablename) {
         this.dataTablename = dataTablename;
     }
-    public LocalDateTime getOpTime() {
+    public Date getOpTime() {
         return opTime;
     }
 
-    public void setOpTime(LocalDateTime opTime) {
+    public void setOpTime(Date opTime) {
         this.opTime = opTime;
     }
     public String getOpDesc() {
@@ -142,24 +141,6 @@ public class AuthLog extends Model<AuthLog> {
     public void setOpSystem(String opSystem) {
         this.opSystem = opSystem;
     }
-
-    public static final String ID = "ID";
-
-    public static final String DATA_TABLENAME = "DATA_TABLENAME";
-
-    public static final String OP_TIME = "OP_TIME";
-
-    public static final String OP_DESC = "OP_DESC";
-
-    public static final String OP_SQL = "OP_SQL";
-
-    public static final String OP_ZJH = "OP_ZJH";
-
-    public static final String OP_XM = "OP_XM";
-
-    public static final String OP_IP = "OP_IP";
-
-    public static final String OP_SYSTEM = "OP_SYSTEM";
 
     @Override
     protected Serializable pkVal() {

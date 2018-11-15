@@ -3,9 +3,6 @@ package cn.tsinghua.zjptfw.pojo.sql.support;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
 
-import java.sql.JDBCType;
-import java.util.Date;
-
 /**
  * <p>
  * 此表用于按天生成流水号数据，根据此表可知当天的各流水总量
@@ -14,31 +11,31 @@ import java.util.Date;
  * </p>
  *
  * @author guotao
- * @since 2018-11-12
+ * @since 2018-11-15
  */
 public final class SerialNumberDynamicSqlSupport {
 
-     public static final SerialNumberDynamic table = new SerialNumberDynamic();
+     public static final SerialNumberDynamic tableSerialNumber = new SerialNumberDynamic();
     /**
      * 日期
      */
-    public static final SqlColumn<String> snDate = table.snDate;
+    public static final SqlColumn<String> snDate = tableSerialNumber.snDate;
     /**
      * 交易流水号
      */
-    public static final SqlColumn<Long> snFlowNo = table.snFlowNo;
+    public static final SqlColumn<Long> snFlowNo = tableSerialNumber.snFlowNo;
     /**
      * 交易订单号
      */
-    public static final SqlColumn<Long> snTradeNo = table.snTradeNo;
+    public static final SqlColumn<Long> snTradeNo = tableSerialNumber.snTradeNo;
     /**
      * 测试单号
      */
-    public static final SqlColumn<Long> snNo = table.snNo;
+    public static final SqlColumn<Long> snNo = tableSerialNumber.snNo;
     /**
      * 支付项目号
      */
-    public static final SqlColumn<Long> snPaymentitemNo = table.snPaymentitemNo;
+    public static final SqlColumn<Long> snPaymentitemNo = tableSerialNumber.snPaymentitemNo;
 
 
     public static final class SerialNumberDynamic extends SqlTable {

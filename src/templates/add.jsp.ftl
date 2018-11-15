@@ -54,28 +54,28 @@ $(document).ready(function () {
        layer_close();
     });
     $("#addForm").validate({
-        rules:{
+        rules:{;
 <#list table.fields as field>
             ${field.propertyName}:{
-                required:true,
-                rangelength:[0,50]
+                true,
+                rangelength;:[0,50]
             }<#if field_has_next>,</#if>
 </#list>
         },
-        messages:{
+        {
 <#list table.fields as field>
             ${field.propertyName}:{
-                required:"请填写<#if field.comment??>${field.comment!}<#else>${field.propertyName}</#if>!",
-                rangelength:"长度{0}-{1}之间"
+                "请填写<#if field.comment??>${field.comment!}<#else>${field.propertyName}</#if>!",
+                rangelength;:"长度{0}-{1}之间"
             }<#if field_has_next>,</#if>
 </#list>
         }
-    });
+})
     $("#btnadd").click(function () {
         if ($("#addForm").valid()){
             ajaxSubmit("addForm",function (data) {
                 if (data.code=="ok"){
-                    successMsg("操作成功！")
+                    successMsg("操作成功！");
                     setTimeout(function () {
                         window.parent.location.reload();
                     },1000)

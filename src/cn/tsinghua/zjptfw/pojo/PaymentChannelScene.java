@@ -16,13 +16,12 @@ import java.io.Serializable;
  * </p>
  *
  * @author guotao
- * @since 2018-11-09
+ * @since 2018-11-15
  */
 
 @Table(name="ZJJS_PAYMENT_CHANNEL_SCENE")
 public class PaymentChannelScene extends Model<PaymentChannelScene> {
 
-    private static final long serialVersionUID = 1L;
 
     /**
      * 支付渠道ID
@@ -50,10 +49,6 @@ public class PaymentChannelScene extends Model<PaymentChannelScene> {
     public void setPaymentSceneId(String paymentSceneId) {
         this.paymentSceneId = paymentSceneId;
     }
-
-    public static final String PAYMENT_CHANNEL_ID = "PAYMENT_CHANNEL_ID";
-
-    public static final String PAYMENT_SCENE_ID = "PAYMENT_SCENE_ID";
 
     @Override
     protected Serializable pkVal() {

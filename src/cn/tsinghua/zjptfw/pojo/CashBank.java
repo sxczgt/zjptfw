@@ -16,13 +16,12 @@ import java.io.Serializable;
  * </p>
  *
  * @author guotao
- * @since 2018-11-09
+ * @since 2018-11-15
  */
 
 @Table(name="ZJJS_CASH_BANK")
 public class CashBank extends Model<CashBank> {
 
-    private static final long serialVersionUID = 1L;
 
     /**
      * 银行编码+2位序号
@@ -180,30 +179,6 @@ public class CashBank extends Model<CashBank> {
     public void setEnableFlag(String enableFlag) {
         this.enableFlag = enableFlag;
     }
-
-    public static final String ID = "ID";
-
-    public static final String BANK_ID = "BANK_ID";
-
-    public static final String BANK_NAME = "BANK_NAME";
-
-    public static final String BANK_DISPLAY = "BANK_DISPLAY";
-
-    public static final String ACCT_NAME = "ACCT_NAME";
-
-    public static final String BANK_PROVINCE = "BANK_PROVINCE";
-
-    public static final String BANK_CITY = "BANK_CITY";
-
-    public static final String BANK_BRANCH = "BANK_BRANCH";
-
-    public static final String BANK_CODE = "BANK_CODE";
-
-    public static final String BANK_SIGN = "BANK_SIGN";
-
-    public static final String BANK_TYPE = "BANK_TYPE";
-
-    public static final String ENABLE_FLAG = "ENABLE_FLAG";
 
     @Override
     protected Serializable pkVal() {

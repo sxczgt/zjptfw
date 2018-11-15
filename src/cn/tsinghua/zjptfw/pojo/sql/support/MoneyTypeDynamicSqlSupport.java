@@ -14,27 +14,27 @@ import java.util.Date;
  * </p>
  *
  * @author guotao
- * @since 2018-11-12
+ * @since 2018-11-15
  */
 public final class MoneyTypeDynamicSqlSupport {
 
-     public static final MoneyTypeDynamic table = new MoneyTypeDynamic();
+     public static final MoneyTypeDynamic tableMoneyType = new MoneyTypeDynamic();
     /**
      * 币种ID
      */
-    public static final SqlColumn<String> moneyTypeId = table.moneyTypeId;
+    public static final SqlColumn<String> moneyTypeId = tableMoneyType.moneyTypeId;
     /**
      * 币种编码
      */
-    public static final SqlColumn<String> moneyTypeCode = table.moneyTypeCode;
+    public static final SqlColumn<String> moneyTypeCode = tableMoneyType.moneyTypeCode;
     /**
      * 币种名称
      */
-    public static final SqlColumn<String> moneyTypeName = table.moneyTypeName;
+    public static final SqlColumn<String> moneyTypeName = tableMoneyType.moneyTypeName;
     /**
      * 启用标志
      */
-    public static final SqlColumn<String> enableFlag = table.enableFlag;
+    public static final SqlColumn<String> enableFlag = tableMoneyType.enableFlag;
 
 
     public static final class MoneyTypeDynamic extends SqlTable {

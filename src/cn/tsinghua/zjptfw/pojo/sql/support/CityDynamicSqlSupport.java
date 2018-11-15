@@ -11,15 +11,15 @@ import org.mybatis.dynamic.sql.SqlTable;
  * </p>
  *
  * @author guotao
- * @since 2018-11-12
+ * @since 2018-11-15
  */
 public final class CityDynamicSqlSupport {
 
-     public static final CityDynamic table = new CityDynamic();
-    public static final SqlColumn<Long> cid = table.cid;
-    public static final SqlColumn<String> cityid = table.cityid;
-    public static final SqlColumn<String> city = table.city;
-    public static final SqlColumn<String> father = table.father;
+     public static final CityDynamic tableCity = new CityDynamic();
+    public static final SqlColumn<Long> cid = tableCity.cid;
+    public static final SqlColumn<String> cityid = tableCity.cityid;
+    public static final SqlColumn<String> city = tableCity.city;
+    public static final SqlColumn<String> father = tableCity.father;
 
 
     public static final class CityDynamic extends SqlTable {

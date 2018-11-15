@@ -16,13 +16,12 @@ import java.io.Serializable;
  * </p>
  *
  * @author guotao
- * @since 2018-11-09
+ * @since 2018-11-15
  */
 
 @Table(name="ZJJS_PAYMENT_SCENE")
 public class PaymentScene extends Model<PaymentScene> {
 
-    private static final long serialVersionUID = 1L;
 
     /**
      * 支付场景ID
@@ -102,18 +101,6 @@ public class PaymentScene extends Model<PaymentScene> {
     public void setEnableFlag(String enableFlag) {
         this.enableFlag = enableFlag;
     }
-
-    public static final String PAYMENT_SCENE_ID = "PAYMENT_SCENE_ID";
-
-    public static final String PAYMENT_SCENE_CODE = "PAYMENT_SCENE_CODE";
-
-    public static final String PAYMENT_SCENE_NAME = "PAYMENT_SCENE_NAME";
-
-    public static final String REMARK = "REMARK";
-
-    public static final String TRADE_TYPE = "TRADE_TYPE";
-
-    public static final String ENABLE_FLAG = "ENABLE_FLAG";
 
     @Override
     protected Serializable pkVal() {

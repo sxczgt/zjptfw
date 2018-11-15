@@ -41,7 +41,6 @@ public class ${entity} extends Model<${entity}> {
 public class ${entity} implements Serializable {
 </#if>
 
-    private static final long serialVersionUID = 1L;
 <#-- ----------  BEGIN 字段循环遍历  ---------->
 <#list table.fields as field>
 <#if field.keyFlag>
@@ -110,10 +109,6 @@ public class ${entity} implements Serializable {
 </#if>
 
 <#if entityColumnConstant>
-<#list table.fields as field>
-    public static final String ${field.name?upper_case} = "${field.name}";
-
-</#list>
 </#if>
 <#if activeRecord>
     @Override

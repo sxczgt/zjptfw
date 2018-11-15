@@ -3,11 +3,11 @@ package cn.tsinghua.zjptfw.utils.generator;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
@@ -53,6 +53,7 @@ public class CodeGenerator2018 {
         String modalName = tableModalName.split("\\*")[1];
 
         GlobalConfig config = new GlobalConfig()
+                .setDateType(DateType.ONLY_DATE)
                 .setOutputDir(outputDir)//输出目录
                 .setFileOverride(true)// 是否覆盖文件 false:已存在时不覆盖
                 .setActiveRecord(true)// 开启 activeRecord 模式
@@ -98,7 +99,7 @@ public class CodeGenerator2018 {
         };
 
         List<FileOutConfig> focList = new ArrayList<FileOutConfig>();
-        focList.add(new FileOutConfig("/templates/list.jsp.ftl") {
+        /*focList.add(new FileOutConfig("/templates/list.jsp.ftl") {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输入文件名称
@@ -121,11 +122,17 @@ public class CodeGenerator2018 {
                 return outputDir + "/JSP/" + StringUtils.firstCharToLower(tableInfo.getEntityName()) +
                         "/" + StringUtils.firstCharToLower(tableInfo.getEntityName()) + "Edit.jsp";
             }
-        });
+        });*/
         focList.add(new FileOutConfig("/templates/sqlSupport.java.ftl") {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 return outputDir + "/DynamicSqlSupport/" + toUpperCaseFirstOne(tableInfo.getEntityName())+ "DynamicSqlSupport.java";
+            }
+        });
+        focList.add(new FileOutConfig("/templates/dao.java.ftl") {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return outputDir + "/dao/" + toUpperCaseFirstOne(tableInfo.getEntityName())+ "Dao.java";
             }
         });
         cfg.setFileOutConfigList(focList);

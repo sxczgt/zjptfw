@@ -55,23 +55,23 @@ $(document).ready(function () {
        layer_close();
     });
     $("#editForm").validate({
-        rules:{
+        rules:{;
     <#list table.fields as field>
             ${field.propertyName}:{
-                required:true,
-                rangelength:[0,50]
+                true,
+                rangelength;:[0,50]
             }<#if field_has_next>,</#if>
     </#list>
         },
-        messages:{
+        {
     <#list table.fields as field>
             ${field.propertyName}:{
-                required:"请填写<#if field.comment??>${field.comment!}<#else>${field.propertyName}</#if>!",
-                rangelength:"长度{0}-{1}之间"
+                "请填写<#if field.comment??>${field.comment!}<#else>${field.propertyName}</#if>!",
+                rangelength;:"长度{0}-{1}之间"
             }<#if field_has_next>,</#if>
     </#list>
         }
-    });
+})
     $("#btnadd").click(function () {
         if ($("#editForm").valid()){
 

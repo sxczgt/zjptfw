@@ -91,10 +91,9 @@ public class HttpProtocolHandler {
      * @param request 请求数据
      * @param strParaFileName 文件类型的参数名
      * @param strFilePath 文件路径
-     * @return 
-     * @throws HttpException, IOException 
+     * @return
      */
-    public HttpResponse execute(HttpRequest request, String strParaFileName, String strFilePath) throws HttpException, IOException {
+    public HttpResponse execute(HttpRequest request, String strParaFileName, String strFilePath) throws IOException {
         HttpClient httpclient = new HttpClient(connectionManager);
 
         // 设置连接超时

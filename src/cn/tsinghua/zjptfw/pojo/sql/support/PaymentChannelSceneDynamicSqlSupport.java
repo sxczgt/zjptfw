@@ -14,19 +14,19 @@ import java.util.Date;
  * </p>
  *
  * @author guotao
- * @since 2018-11-12
+ * @since 2018-11-15
  */
 public final class PaymentChannelSceneDynamicSqlSupport {
 
-     public static final PaymentChannelSceneDynamic table = new PaymentChannelSceneDynamic();
+     public static final PaymentChannelSceneDynamic tablePaymentChannelScene = new PaymentChannelSceneDynamic();
     /**
      * 支付渠道ID
      */
-    public static final SqlColumn<String> paymentChannelId = table.paymentChannelId;
+    public static final SqlColumn<String> paymentChannelId = tablePaymentChannelScene.paymentChannelId;
     /**
      * 支付场景ID
      */
-    public static final SqlColumn<String> paymentSceneId = table.paymentSceneId;
+    public static final SqlColumn<String> paymentSceneId = tablePaymentChannelScene.paymentSceneId;
 
 
     public static final class PaymentChannelSceneDynamic extends SqlTable {

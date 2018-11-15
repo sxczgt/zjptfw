@@ -3,9 +3,6 @@ package cn.tsinghua.zjptfw.pojo.sql.support;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
 
-import java.sql.JDBCType;
-import java.util.Date;
-
 /**
  * <p>
  * 
@@ -14,14 +11,14 @@ import java.util.Date;
  * </p>
  *
  * @author guotao
- * @since 2018-11-12
+ * @since 2018-11-15
  */
 public final class ProvinceDynamicSqlSupport {
 
-     public static final ProvinceDynamic table = new ProvinceDynamic();
-    public static final SqlColumn<Long> sid = table.sid;
-    public static final SqlColumn<String> provinceid = table.provinceid;
-    public static final SqlColumn<String> province = table.province;
+     public static final ProvinceDynamic tableProvince = new ProvinceDynamic();
+    public static final SqlColumn<Long> sid = tableProvince.sid;
+    public static final SqlColumn<String> provinceid = tableProvince.provinceid;
+    public static final SqlColumn<String> province = tableProvince.province;
 
 
     public static final class ProvinceDynamic extends SqlTable {

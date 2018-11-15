@@ -16,13 +16,12 @@ import java.io.Serializable;
  * </p>
  *
  * @author guotao
- * @since 2018-11-09
+ * @since 2018-11-15
  */
 
 @Table(name="ZJJS_MONEY_TYPE")
 public class MoneyType extends Model<MoneyType> {
 
-    private static final long serialVersionUID = 1L;
 
     /**
      * 币种ID
@@ -76,14 +75,6 @@ public class MoneyType extends Model<MoneyType> {
     public void setEnableFlag(String enableFlag) {
         this.enableFlag = enableFlag;
     }
-
-    public static final String MONEY_TYPE_ID = "MONEY_TYPE_ID";
-
-    public static final String MONEY_TYPE_CODE = "MONEY_TYPE_CODE";
-
-    public static final String MONEY_TYPE_NAME = "MONEY_TYPE_NAME";
-
-    public static final String ENABLE_FLAG = "ENABLE_FLAG";
 
     @Override
     protected Serializable pkVal() {

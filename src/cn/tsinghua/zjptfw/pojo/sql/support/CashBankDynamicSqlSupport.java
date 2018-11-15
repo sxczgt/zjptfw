@@ -3,9 +3,6 @@ package cn.tsinghua.zjptfw.pojo.sql.support;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
 
-import java.sql.JDBCType;
-import java.util.Date;
-
 /**
  * <p>
  * 收款银行表
@@ -14,59 +11,59 @@ import java.util.Date;
  * </p>
  *
  * @author guotao
- * @since 2018-11-12
+ * @since 2018-11-15
  */
 public final class CashBankDynamicSqlSupport {
 
-     public static final CashBankDynamic table = new CashBankDynamic();
+     public static final CashBankDynamic tableCashBank = new CashBankDynamic();
     /**
      * 银行编码+2位序号
      */
-    public static final SqlColumn<String> id = table.id;
+    public static final SqlColumn<String> id = tableCashBank.id;
     /**
      * 收款银行账号
      */
-    public static final SqlColumn<String> bankId = table.bankId;
+    public static final SqlColumn<String> bankId = tableCashBank.bankId;
     /**
      * 收款开户银行
      */
-    public static final SqlColumn<String> bankName = table.bankName;
+    public static final SqlColumn<String> bankName = tableCashBank.bankName;
     /**
      * 银行显示名称
      */
-    public static final SqlColumn<String> bankDisplay = table.bankDisplay;
+    public static final SqlColumn<String> bankDisplay = tableCashBank.bankDisplay;
     /**
      * 收款银行户名
      */
-    public static final SqlColumn<String> acctName = table.acctName;
+    public static final SqlColumn<String> acctName = tableCashBank.acctName;
     /**
      * 收款银行所在省份
      */
-    public static final SqlColumn<String> bankProvince = table.bankProvince;
+    public static final SqlColumn<String> bankProvince = tableCashBank.bankProvince;
     /**
      * 收款银行所在市
      */
-    public static final SqlColumn<String> bankCity = table.bankCity;
+    public static final SqlColumn<String> bankCity = tableCashBank.bankCity;
     /**
      * 收款支行名称
      */
-    public static final SqlColumn<String> bankBranch = table.bankBranch;
+    public static final SqlColumn<String> bankBranch = tableCashBank.bankBranch;
     /**
      * 对应银行代码表
      */
-    public static final SqlColumn<String> bankCode = table.bankCode;
+    public static final SqlColumn<String> bankCode = tableCashBank.bankCode;
     /**
      * 对公对私标志
      */
-    public static final SqlColumn<String> bankSign = table.bankSign;
+    public static final SqlColumn<String> bankSign = tableCashBank.bankSign;
     /**
      * 校内/校外
      */
-    public static final SqlColumn<String> bankType = table.bankType;
+    public static final SqlColumn<String> bankType = tableCashBank.bankType;
     /**
      * 启用标志
      */
-    public static final SqlColumn<String> enableFlag = table.enableFlag;
+    public static final SqlColumn<String> enableFlag = tableCashBank.enableFlag;
 
 
     public static final class CashBankDynamic extends SqlTable {

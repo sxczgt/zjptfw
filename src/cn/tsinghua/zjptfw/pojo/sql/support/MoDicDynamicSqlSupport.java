@@ -11,23 +11,23 @@ import org.mybatis.dynamic.sql.SqlTable;
  * </p>
  *
  * @author guotao
- * @since 2018-11-12
+ * @since 2018-11-15
  */
 public final class MoDicDynamicSqlSupport {
 
-     public static final MoDicDynamic table = new MoDicDynamic();
+     public static final MoDicDynamic tableMoDic = new MoDicDynamic();
     /**
      * 字典标识
      */
-    public static final SqlColumn<String> dic = table.dic;
+    public static final SqlColumn<String> dic = tableMoDic.dic;
     /**
      * 字典名称
      */
-    public static final SqlColumn<String> dicname = table.dicname;
+    public static final SqlColumn<String> dicname = tableMoDic.dicname;
     /**
      * 所在系统名称
      */
-    public static final SqlColumn<String> systemName = table.systemName;
+    public static final SqlColumn<String> systemName = tableMoDic.systemName;
 
 
     public static final class MoDicDynamic extends SqlTable {

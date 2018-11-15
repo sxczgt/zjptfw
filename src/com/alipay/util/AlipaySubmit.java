@@ -83,8 +83,8 @@ public class AlipaySubmit {
 		sbHtml.append("<form id=\"alipaysubmit\" name=\"alipaysubmit\" action=\"" + ALIPAY_GATEWAY_NEW + "_input_charset=" + AlipayWebConfig.input_charset + "\" method=\"" + strMethod + "\">");
 
 		for (int i = 0; i < keys.size(); i++) {
-			String name = (String) keys.get(i);
-			String value = (String) sPara.get(name);
+			String name = keys.get(i);
+			String value = sPara.get(name);
 			sbHtml.append("<input type=\"hidden\" name=\"" + name + "\" value=\"" + value + "\"/>");
 		}
 
@@ -114,8 +114,8 @@ public class AlipaySubmit {
 				+ "\" method=\"" + strMethod + "\">");
 
 		for (int i = 0; i < keys.size(); i++) {
-			String name = (String) keys.get(i);
-			String value = (String) sPara.get(name);
+			String name = keys.get(i);
+			String value = sPara.get(name);
 			sbHtml.append("<input type=\"hidden\" name=\"" + name + "\" value=\"" + value + "\"/>");
 		}
 		sbHtml.append("<input type=\"file\" name=\"" + strParaFileName + "\" />");
@@ -219,8 +219,8 @@ public class AlipaySubmit {
 				+ strMethod + "\">");
 
 		for (int i = 0; i < keys.size(); i++) {
-			String name = (String) keys.get(i);
-			String value = (String) sPara.get(name);
+			String name = keys.get(i);
+			String value = sPara.get(name);
 
 			if (!name.equals("bptb_pay_file")) {
 				sbHtml.append("<input type=\"hidden\" name=\"" + name + "\" value=\"" + value + "\"/>");

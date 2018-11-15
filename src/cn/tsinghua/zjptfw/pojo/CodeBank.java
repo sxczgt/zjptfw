@@ -16,13 +16,12 @@ import java.io.Serializable;
  * </p>
  *
  * @author guotao
- * @since 2018-11-09
+ * @since 2018-11-15
  */
 
 @Table(name="ZJJS_CODE_BANK")
 public class CodeBank extends Model<CodeBank> {
 
-    private static final long serialVersionUID = 1L;
 
     /**
      * 银行编码
@@ -63,12 +62,6 @@ public class CodeBank extends Model<CodeBank> {
     public void setEnableFlag(String enableFlag) {
         this.enableFlag = enableFlag;
     }
-
-    public static final String BANK_CODE = "BANK_CODE";
-
-    public static final String BANK_NAME = "BANK_NAME";
-
-    public static final String ENABLE_FLAG = "ENABLE_FLAG";
 
     @Override
     protected Serializable pkVal() {

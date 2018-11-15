@@ -156,7 +156,7 @@ public class HttpClientUtil {
 			java.util.List<org.apache.http.NameValuePair> list = new java.util.ArrayList<org.apache.http.NameValuePair>();
 			java.util.Iterator<java.util.Map.Entry<String, String>> iterator = paramMap.entrySet().iterator();
 			while (iterator.hasNext()) {
-				java.util.Map.Entry<String, String> elem = (java.util.Map.Entry<String, String>) iterator.next();
+				java.util.Map.Entry<String, String> elem = iterator.next();
 				list.add(new org.apache.http.message.BasicNameValuePair(elem.getKey(), elem.getValue()));
 			}
 			if (list.size() > 0) {

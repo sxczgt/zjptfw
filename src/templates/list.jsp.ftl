@@ -27,7 +27,7 @@
         <input type="hidden" name="columnName" id="columnName" value="${r'${fn:escapeXml(columnName )}'}"/>
     </form>
     <div class=" cl pd-5 bg-1 bk-gray mb-20">
-        <button onclick="layer_show('添加${cfg.modalsName}','<%=baseController%>/toAddOne.do',<%=width%>,<%=height%>)" class="btn btn-primary"><i class="Hui-iconfont">&#xe600;</i>添加${cfg.modalsName}</button>
+        <button onclick="layer_show('添加${cfg.modalsName}','<%=baseController%>/toAddOne.do',<%=width%>,;<%=height%>;)" class="btn btn-primary"><i class="Hui-iconfont">&#xe600;</i>添加${cfg.modalsName}</button>
     </div>
     <div>
         <table class="table table-border table-bordered table-bg table-hover table-sort" id="${entity?uncap_first}Table">
@@ -48,7 +48,7 @@
         </#list>
                     <td>
                     <span><a class="btn btn-secondary radius size-MINI" href="javascript:void(0)"
-                           onclick="layer_show('编辑${cfg.modalsName}信息','<%=baseController%>/toEditOne.do?id=${r'${'}${entity?uncap_first}.${keyPropertyName} }',<%=width%>,<%=height%>)">编辑</a>
+                           onclick="layer_show('编辑${cfg.modalsName}信息','<%=baseController%>/toEditOne.do?id=${r'${'}${entity?uncap_first}.${keyPropertyName} }',<%=width%>,;<%=height%>;)">编辑</a>
                     </span>&nbsp;&nbsp;
                     <span><a class="btn btn-danger radius size-MINI" href="javascript:void(0)"
                            onclick="deletePaymentItemType('${r'${'}${entity?uncap_first}.${keyPropertyName}${r'}'}')">删除</a>
@@ -68,15 +68,15 @@
     $(document).ready(function () {
         $("#pager").pager({
             pagenumber: ${r'${fn:escapeXml('}page.current)},
-            pagecount: ${r'${fn:escapeXml('}page.getPages())},
-            pagemax:${r'${fn:escapeXml('}page.size)},
-            maxresult:${r'${fn:escapeXml('}page.total)},
+            pagecount;: ${r'${fn:escapeXml('}page.getPages();)},
+            ${r'${fn:escapeXml('}page.size;)},
+            ${r'${fn:escapeXml('}page.total;)},
             buttonClickCallback: function (page_index) {
                 $("#pageNo").val(page_index);
                 $("#dataListForm").submit();
             }
-        });
-        $('.skin-minimal input').iCheck({
+    })
+    $('.skin-minimal input').iCheck({
             checkboxClass: 'icheckbox-blue',
             radioClass: 'iradio-blue',
             increaseArea: '20%'
@@ -116,7 +116,7 @@
                 }
             }
         });
-    });
+    })
     function deletePaymentItemType(id){
         layer.confirm('确定要删除吗?', {icon: 3, title:'提示'},function (index) {
             $.post("<%=baseController%>/deleteOne.do",

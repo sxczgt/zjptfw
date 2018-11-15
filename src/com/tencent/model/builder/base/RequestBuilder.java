@@ -87,5 +87,5 @@ public abstract class RequestBuilder {
 		DecimalFormat a = new DecimalFormat("############");
 		BigDecimal fen = new BigDecimal(yuan).multiply(new BigDecimal(100));
 		return a.format(fen);
-	};
+	}
 }

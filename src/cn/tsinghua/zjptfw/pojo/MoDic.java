@@ -16,13 +16,12 @@ import java.io.Serializable;
  * </p>
  *
  * @author guotao
- * @since 2018-11-09
+ * @since 2018-11-15
  */
 
 @Table(name="ZJJS_MO_DIC")
 public class MoDic extends Model<MoDic> {
 
-    private static final long serialVersionUID = 1L;
 
     /**
      * 字典标识
@@ -63,12 +62,6 @@ public class MoDic extends Model<MoDic> {
     public void setSystemName(String systemName) {
         this.systemName = systemName;
     }
-
-    public static final String DIC = "DIC";
-
-    public static final String DICNAME = "DICNAME";
-
-    public static final String SYSTEM_NAME = "SYSTEM_NAME";
 
     @Override
     protected Serializable pkVal() {

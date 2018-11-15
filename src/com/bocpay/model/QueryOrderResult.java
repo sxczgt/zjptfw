@@ -49,7 +49,7 @@ public class QueryOrderResult {
 		sb.append("	<TOTAL>1</TOTAL>").append("\n");
 		sb.append("	<PAYAMOUNT>0.00</PAYAMOUNT>").append("\n");
 		sb.append("	<REFUNDAMOUNT>0.00</REFUNDAMOUNT>").append("\n");
-		sb.append("").append("\n");
+		sb.append("\n");
 		sb.append("	<QUERYORDER>").append("\n");
 		sb.append("		<MERCHANTID>105100000012072</MERCHANTID>").append("\n");
 		sb.append("		<BRANCHID>110000000</BRANCHID>").append("\n");
@@ -63,7 +63,7 @@ public class QueryOrderResult {
 		sb.append("		<REFUND>0.00</REFUND>").append("\n");
 		sb.append("		<SIGN>99584bd5e663ecba113edf45a6dfa536e79368734bdc2554ff9ef44a9b5bec680ca7752aae446681d6218b25372e1a7b470e31c960679535f97c38c9e45413b15aa02934bd1c9ebc8a0a48031459be7a9b8097e4653892d4dc16bd237f172a64056d7a3416ec97deb7d59d2bf700e232c031dc585de1563864c019a0288ab4d9</SIGN>").append("\n");
 		sb.append("	</QUERYORDER>").append("\n");
-		sb.append("").append("\n");
+		sb.append("\n");
 		sb.append("</DOCUMENT>").append("\n");
 
 		String xml = sb.toString();

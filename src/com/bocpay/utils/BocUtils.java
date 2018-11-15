@@ -17,6 +17,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.security.cert.X509Certificate;
 import java.util.*;
 
@@ -151,7 +152,7 @@ public class BocUtils {
             }
 
             int resIndex = res.indexOf("\r\n\r\n");
-            String body = res.substring(resIndex + 4, res.length());
+            String body = res.substring(resIndex + 4);
             return body;
         } finally {
             if (is != null) {
@@ -181,7 +182,7 @@ public class BocUtils {
 
         // move through the list and create a series of URL key/value pairs
         while (itr.hasNext()) {
-            String fieldName = (String) itr.next();
+            String fieldName = itr.next();
             String fieldValue = (String) fields.get(fieldName);
 
             if ((fieldValue != null) && (fieldValue.length() > 0)) {
@@ -207,7 +208,7 @@ public class BocUtils {
         // iterate through the list and add the remaining field values
         Iterator<String> itr = fieldNames.iterator();
         while (itr.hasNext()) {
-            String fieldName = (String) itr.next();
+            String fieldName = itr.next();
             String fieldValue = (String) fields.get(fieldName);
             if ((fieldValue != null) && (fieldValue.length() > 0)) {
                 buf.append(fieldName + "=" + fieldValue);
@@ -229,7 +230,7 @@ public class BocUtils {
         SecretKey key = new SecretKeySpec(b, "HmacSHA256");
         Mac m = Mac.getInstance("HmacSHA256");
         m.init(key);
-        m.update(buf.toString().getBytes("ISO-8859-1"));
+        m.update(buf.toString().getBytes(StandardCharsets.ISO_8859_1));
         mac = m.doFinal();
         String hashValue = getHEXFromBytes(mac);
         return hashValue;
@@ -302,7 +303,7 @@ public class BocUtils {
      * @return String containing the output String
      */
     public static String null2unknown(String in, Map<String, Object> responseFields) {
-        if (in == null || in.length() == 0 || responseFields == null || (String) responseFields.get(in) == null) {
+        if (in == null || in.length() == 0 || responseFields == null || responseFields.get(in) == null) {
             return "No Value Returned";
         } else {
             return (String) responseFields.get(in);
@@ -736,7 +737,7 @@ public class BocUtils {
             if (i > 0) {
                 try {
                     String key = token.substring(0, i);
-                    String value = URLDecoder.decode(token.substring(i + 1, token.length()));
+                    String value = URLDecoder.decode(token.substring(i + 1));
                     map.put(key, value);
                 } catch (Exception ex) {
                     ex.printStackTrace();
